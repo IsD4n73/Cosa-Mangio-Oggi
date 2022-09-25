@@ -11,28 +11,42 @@ database = r"./data/cosamangio.db"
 def main():
      return "App.py"
 
-@app.route('/login')
+@app.route('/login', methods=["POST"])
 def entrata():
+
      email = request.form['email']
      password = request.form['password']
+
      conn = create_connection(database)
      with conn:
           loged = login(conn, email, password)
+          return render_template("index.html")
 
 
-@app.route('/registrati')
+@app.route('/registrati', methods=["POST"])
 def regi():
-     # email = request.form['email']
-     # password = request.form['password']
-     # username = request.form['username']
-     email = "d4n73@gmail.com"
-     username = "D4n73"
-     password = "Admin"
+     
+     email = request.form['email']
+     password = request.form['password']
+     username = request.form['username']
+
      conn = create_connection(database)
      with conn:
           registrato = register(conn, email, password, username)
           return registrato
 
 
-if __name__=="__main__":
+
+@app.route("/login", methods=["GET"])
+def logget():
+     return render_template("index.html")
+
+@app.route("/registrati", methods=["GET"])
+def regget():
+     return render_template("index.html")
+
+
+
+
+if __name__== "__main__":
     app.run()
