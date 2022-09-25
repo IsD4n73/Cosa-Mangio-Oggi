@@ -1,7 +1,7 @@
-from flask import Flask, render_template, request, Response, jsonify
+from flask import Flask, render_template, request, Response, jsonify, redirect
 from connection import create_connection
 from operazioniDB import login,  register
-from adminDB import svuotaTabella, vediLogin
+from adminDB import svuotaTabella, vediLogin, adminLogin
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
@@ -56,6 +56,25 @@ def regget():
 
 #                   ADMIN     
 ############################################################
+
+@app.route("/admin")
+def adminLog():
+     return render_template("admin-login.html")
+
+@app.route("/admin/dashboard", methods=["POST"])
+def adminDash():
+     username = request.form["user"]
+     psw = request.form["psw"]
+     conn = create_connection(database)
+     with conn:
+          if adminLogin(conn, username, psw):
+               return "ok"
+          else:
+               return redirect("/admin")
+
+
+
+
 
 @app.route("/admin/rimuovi", methods=["GET"])
 def adminRem():

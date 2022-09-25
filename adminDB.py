@@ -1,3 +1,4 @@
+from operator import truediv
 import sqlite3
 
 # Il file contiene tutte le funzioni per operazioni sul DB da admin 
@@ -25,3 +26,14 @@ def vediLogin(conn):
          <br><br>
          """
     return ris
+
+def adminLogin(conn, user, psw):
+    cur = conn.cursor()
+    sql = f"SELECT * FROM admin WHERE user = '{user}' AND password = '{psw}'"
+    cur.execute(sql)
+    rows = cur.fetchall()
+
+    for row in rows:
+        if row["user"] == user and row["password"] == psw:
+            return True
+        return False
