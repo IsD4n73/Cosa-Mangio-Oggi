@@ -15,17 +15,46 @@ def vediLogin(conn):
     cur.execute("SELECT * FROM login")
     rows = cur.fetchall()
 
-    ris = ""
+    ris = """
+    <!doctype html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Visualizza Login</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    </head>
+    <body>
+        
+        <table class="table m-4 table-striped table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Username</th>
+      <th scope="col">Email</th>
+    </tr>
+  </thead>
+  <tbody> 
+    """
     for row in rows:
         
         ris += f"""
-         <b>ID:</b> {row["id_utente"]} <br>
-         <b>USERNAME:</b> {row["username"]}<br>
-         <b>EMAIL:</b> {row["email"]}<br>
-         
-         <br><br>
+        <tr>
+         <th scope="row">{row["id_utente"]}</th>
+         <td>{row["username"]}</td>
+         <td>{row["email"]}</td>
+        </tr>
          """
+    ris += """</tbody>
+    </table>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    </body>
+    </html>
+    """
     return ris
+
+
+
 
 def adminLogin(conn, user, psw):
     cur = conn.cursor()
