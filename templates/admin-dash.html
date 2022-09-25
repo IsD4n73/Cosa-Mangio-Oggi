@@ -16,7 +16,7 @@
 
 <header>
   <hgroup>
-    <h1>Dashboard Admin</h1>
+    <h1>Dashboard Admin (LVL {{lvlPermessi}})</h1>
     <a href="/">&larr; Vai alla Home</a>
   </hgroup>
 </header>
@@ -50,34 +50,43 @@
       <h2>Visualizza Tabella Database</h2>
       <a href="#" class="icon ion-close js-close close"></a>
       <form method="post" action="/admin/vedi">
-        <input type="text" name="nomeTabella"/>
+        <input type="text" required name="nomeTabella"/>
         <input type="submit" value="Visualizza">
       </form> 
     </hgroup>
   </div>
 
+
+  {% if lvlPermessi == 3 %}
   <div class="brick closed">
     <hgroup>
       <h2>Svuota Tabella</h2>
       <a href="#" class="icon ion-close js-close close"></a>
       <form method="post" action="/admin/rimuovi">
-        <input type="text" name="nomeTabella"/>
+        <input type="text" required name="nomeTabella"/>
         <input type="submit" value="Rimuovi">
       </form>
     </hgroup>
   </div>
 
-  <!-- <div class="brick closed">
+
+
+  <div class="brick closed">
     <hgroup>
-      <h2>Gallery</h2>
+      <h2>Aggiungi Admin</h2>
       <a href="#" class="icon ion-close js-close close"></a>
-      <form>
-        <textarea></textarea>
+      <form method="post" action="/admin/add-admin">
+        <input type="text" placeholder="Username" name="username" required>
+        <input type="text" placeholder="Password" name="password" required>
+        <input type="number" placeholder="LVL Permessi" max="3" min="1" name="lvl" required>
+        <input type="submit" value="Aggiungi Admin">
       </form>
     </hgroup>
   </div>
+  {% endif %}
 
-  <div class="brick closed">
+
+  <!-- <div class="brick closed">
     <hgroup>
       <h2>Page Settings</h2>
       <a href="#" class="icon ion-close js-close close"></a>

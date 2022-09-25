@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, session, jsonify, redirect
 from connection import create_connection
 from operazioniDB import login,  register
-from adminDB import svuotaTabella, vediLogin, adminLogin
+from adminDB import addAdmin, svuotaTabella, vediAdmin, vediLogin, adminLogin
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
@@ -74,14 +74,25 @@ def adminDash():
 
      conn = create_connection(database)
      with conn:
-          if adminLogin(conn, username, psw):
+          login, permessi = adminLogin(conn, username, psw)
+          if login:
                session["logged-admin"] = username
-               return render_template("admin-dash.html")
+               return render_template("admin-dash.html", lvlPermessi=permessi)
           else:
                return redirect("/admin")
 
+@app.route("/admin/logout")
+def adminout():
+     session.pop("username", None)
+     return redirect("/")
 
 
+@app.route("/admin/add-admin", methods=["POST"])
+def adminAdd():
+     conn = create_connection(database)
+     with conn:
+          addAdmin(conn, request.form["username"], request.form["password"], request.form["lvl"])
+          return redirect("/admin/dashboard")
 
 
 @app.route("/admin/rimuovi", methods=["POST"])
@@ -89,7 +100,7 @@ def adminRem():
      conn = create_connection(database)
      with conn:
           svuotaTabella(conn,request.form["nomeTabella"])
-     return "Operazione compleata."
+     return redirect("/admin/dashboard")
 
 @app.route("/admin/vedi", methods=["POST"])
 def vedLog():
@@ -97,6 +108,8 @@ def vedLog():
      with conn:
           if request.form["nomeTabella"] == "login":
                return vediLogin(conn)
+          elif request.form["nomeTabella"]  == "admin":
+               return vediAdmin(conn)
           else:
                return redirect("/admin/dashboard")
 
