@@ -1,10 +1,11 @@
-from flask import Flask, render_template, request, Response, jsonify, redirect
+from flask import Flask, render_template, request, session, jsonify, redirect
 from connection import create_connection
 from operazioniDB import login,  register
 from adminDB import svuotaTabella, vediLogin, adminLogin
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
+app.secret_key = "COsaMangioOggKeySecret23"
 
 database = r"./data/cosamangio.db"
 
@@ -47,11 +48,16 @@ def regi():
 
 @app.route("/login", methods=["GET"])
 def logget():
-     return render_template("index.html")
+     return redirect("/")
 
 @app.route("/registrati", methods=["GET"])
 def regget():
-     return render_template("index.html")
+     return redirect("/")
+
+@app.route("/admin/dashboard", methods=["GET"])
+def dashget():
+     return redirect("/")
+
 
 
 #                   ADMIN     
@@ -65,10 +71,12 @@ def adminLog():
 def adminDash():
      username = request.form["user"]
      psw = request.form["psw"]
+
      conn = create_connection(database)
      with conn:
           if adminLogin(conn, username, psw):
-               return "ok"
+               session["logged-admin"] = username
+               return render_template("admin-dash.html")
           else:
                return redirect("/admin")
 
@@ -76,18 +84,21 @@ def adminDash():
 
 
 
-@app.route("/admin/rimuovi", methods=["GET"])
+@app.route("/admin/rimuovi", methods=["POST"])
 def adminRem():
      conn = create_connection(database)
      with conn:
-          svuotaTabella(conn, "login")
+          svuotaTabella(conn,request.form["nomeTabella"])
      return "Operazione compleata."
 
-@app.route("/admin/vedi", methods=["GET"])
+@app.route("/admin/vedi", methods=["POST"])
 def vedLog():
      conn = create_connection(database)
      with conn:
-          return vediLogin(conn)
+          if request.form["nomeTabella"] == "login":
+               return vediLogin(conn)
+          else:
+               return redirect("/admin/dashboard")
 
 
 
