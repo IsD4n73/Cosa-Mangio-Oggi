@@ -2,12 +2,12 @@ from flask import Flask, render_template, request, session, jsonify, redirect
 from connection import create_connection
 from operazioniDB import login,  register
 from adminDB import addAdmin, rimuoviAdmin, rimuoviUtente, svuotaTabella, vediAdmin, vediLogin, adminLogin
+from variabili import database
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
 app.secret_key = "COsaMangioOggKeySecret23"
 
-database = r"./data/cosamangio.db"
 
 
 
