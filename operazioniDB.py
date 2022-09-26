@@ -32,3 +32,22 @@ def register(conn, email, psw, user):
     cur.execute(sql)
     conn.commit()
     return "Utente registrato!"
+
+
+# OTTIENI DOMANDE
+def getDomande(conn):
+    cur = conn.cursor()
+
+    sql = f"SELECT * FROM domande ORDER BY RANDOM()"
+    cur.execute(sql)
+    rows = cur.fetchall()
+    ris = ""
+    for row in rows:
+        ris += f"""
+        {row["id_domanda"]} \n
+        {row["risposta"]} \n
+        {row["messaggio"]} \n
+        {row["utente"]} \n\n
+        """
+    print(ris)
+    return ris

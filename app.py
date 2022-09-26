@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, session, jsonify, redirect
 from connection import create_connection
-from operazioniDB import login,  register
+from operazioniDB import getDomande, login,  register
 from adminDB import addAdmin, rimuoviAdmin, rimuoviUtente, svuotaTabella, vediAdmin, vediLogin, adminLogin
 from variabili import database
 
@@ -157,9 +157,15 @@ def dashget():
 
 
 
+#                   TEST URL     
+############################################################
 
-
-
+@app.route("/test")
+def test():
+     conn = create_connection(database)
+     with conn:
+          domande = getDomande(conn)
+          return domande
 
 if __name__== "__main__":
     app.run()
