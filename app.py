@@ -14,6 +14,7 @@ app.secret_key = "COsaMangioOggKeySecret23"
 #                   URLS     
 ############################################################
 
+# HOMEPAGE
 @app.route('/')
 def main():
      return """
@@ -23,11 +24,12 @@ def main():
      <a href='/registrati'> Registrati </a> <br>
      """
 
-
+# LOGIN GET
 @app.route('/login', methods=["GET"])
 def userlog():
      return render_template("login.html")
 
+# LOGIN POST
 @app.route('/login', methods=["POST"])
 def entrata():
 
@@ -42,10 +44,12 @@ def entrata():
           else:
                return redirect("/login")
 
+# REGISTRATI GET
 @app.route('/registrati', methods=["GET"])
 def regiget():
      return render_template("register.html")
 
+# REGISTRATI POST
 @app.route('/registrati', methods=["POST"])
 def regi():
      
@@ -62,10 +66,12 @@ def regi():
 #                   ADMIN     
 ############################################################
 
+# ADMIN LOGIN
 @app.route("/admin")
 def adminLog():
      return render_template("admin-login.html")
 
+# ADMIN DASHBOARD
 @app.route("/admin/dashboard", methods=["POST"])
 def adminDash():
      username = request.form["user"]
@@ -80,12 +86,13 @@ def adminDash():
           else:
                return redirect("/admin")
 
+# ADMIN LOGOUT
 @app.route("/admin/logout")
 def adminout():
      session.pop("username", None)
      return redirect("/")
 
-
+# AGGIUNGI ADMIN
 @app.route("/admin/add-admin", methods=["POST"])
 def adminAdd():
      conn = create_connection(database)
@@ -94,6 +101,7 @@ def adminAdd():
           return redirect("/admin/dashboard")
 
 
+# SVUOTA TABELLA
 @app.route("/admin/rimuovi", methods=["POST"])
 def adminRem():
      conn = create_connection(database)
@@ -101,6 +109,7 @@ def adminRem():
           svuotaTabella(conn,request.form["nomeTabella"])
      return redirect("/admin/dashboard")
 
+# RIMUOVI ADMIN 
 @app.route("/admin/rimuovi-admin/<id>", methods=["GET"])
 def rimuoviAdminID(id):
      conn = create_connection(database)
@@ -108,7 +117,7 @@ def rimuoviAdminID(id):
           rimuoviAdmin(conn, id)
      return redirect("/admin/dashboard")
 
-
+# RIMUOVI UTENTE
 @app.route("/admin/rimuovi-utente/<id>", methods=["GET"])
 def rimuoviUserID(id):
      conn = create_connection(database)
@@ -117,7 +126,7 @@ def rimuoviUserID(id):
      return redirect("/admin/dashboard")
 
 
-
+#VEDI TABELLA
 @app.route("/admin/vedi", methods=["POST"])
 def vedLog():
      conn = create_connection(database)
