@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Register</title>
+
+    <link rel="stylesheet" href="{{url_for('static', filename='css/user-login.css')}}">
+</head>
+<body>
+    
+
+<div class="box">
+  
+  <h2>Registrati</h2>
+  
+  <form action="" method="post">
+
+    <!-- Register -->
+    
+    <div class="login-form">
+      
+        <label for="first-name">Email</label>
+        <input type="email" id="first-name" placeholder="Email" required name="email">
+        
+        <label for="last-name">Username</label>
+        <input type="text" id="last-name" placeholder="Username" required name="username">
+      
+        
+        <label for="confirm-email">Password</label>
+        <input type="password" id="confirm-email" placeholder="Password" required name="password">
+        
+      </div>
+    
+    <!-- Submit -->
+    
+    <input type="submit" id="submit" value="Registrati">
+    
+    <!-- Help -->
+    
+    <a href="/login" class="register">Accedi!</a>
+
+    {% if mess != "None" %}
+      <p class="register" style="color: red;">{{mess}}</p>
+    {% endif %}
+  </form>
+</div>
+
+</body>
+</html>

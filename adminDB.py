@@ -122,4 +122,4 @@ def adminLogin(conn, user, psw):
         if row["user"] == user and row["password"] == psw:
             permessi = row["lvl_permessi"]
             return True, permessi
-        return False
+        return False, 0

@@ -16,7 +16,17 @@ database = r"./data/cosamangio.db"
 
 @app.route('/')
 def main():
-     return "App.py"
+     return """
+     App.py <br>
+     <a href='/admin'> Admin </a> <br>
+     <a href='/login'> Login </a> <br>
+     <a href='/registrati'> Registrati </a> <br>
+     """
+
+
+@app.route('/login', methods=["GET"])
+def userlog():
+     return render_template("login.html")
 
 @app.route('/login', methods=["POST"])
 def entrata():
@@ -27,8 +37,14 @@ def entrata():
      conn = create_connection(database)
      with conn:
           loged = login(conn, email, password)
-          return render_template("index.html")
+          if loged:
+               return redirect("/user")
+          else:
+               return redirect("/login")
 
+@app.route('/registrati', methods=["GET"])
+def regiget():
+     return render_template("register.html")
 
 @app.route('/registrati', methods=["POST"])
 def regi():
@@ -40,19 +56,11 @@ def regi():
      conn = create_connection(database)
      with conn:
           registrato = register(conn, email, password, username)
-          return registrato
+          return render_template("register.html", mess=registrato)
 
 
 #                   GESTIONE URL     
 ############################################################
-
-@app.route("/login", methods=["GET"])
-def logget():
-     return redirect("/")
-
-@app.route("/registrati", methods=["GET"])
-def regget():
-     return redirect("/")
 
 @app.route("/admin/dashboard", methods=["GET"])
 def dashget():

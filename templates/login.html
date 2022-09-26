@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Register</title>
+
+    <link rel="stylesheet" href="{{url_for('static', filename='css/user-login.css')}}">
+</head>
+<body>
+    
+
+<div class="box">
+  
+  <h2>Accedi</h2>
+  
+  <form action="/login" method="post">
+    
+    <!-- Login -->
+    
+    <div class="login-form">
+      
+      <label for="username">Email</label>
+      <input type="email" id="username" placeholder="Email" name="email" required>
+      
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Password" name="password" required>
+      
+    </div>
+    
+    <!-- Submit -->
+    
+    <input type="submit" id="submit" value="Login">
+    
+    <!-- Help -->
+    
+    <a href="/registrati" class="register">Registrati!</a>
+    <!-- <a href="#" class="forgot-password" title="Forgot password?">Forgot?</a> -->
+    
+  </form>
+</div>
+
+
+</body>
+</html>
