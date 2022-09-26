@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, session, jsonify, redirect
 from connection import create_connection
 from operazioniDB import login,  register
-from adminDB import addAdmin, svuotaTabella, vediAdmin, vediLogin, adminLogin
+from adminDB import addAdmin, rimuoviAdmin, rimuoviUtente, svuotaTabella, vediAdmin, vediLogin, adminLogin
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
@@ -59,15 +59,6 @@ def regi():
           return render_template("register.html", mess=registrato)
 
 
-#                   GESTIONE URL     
-############################################################
-
-@app.route("/admin/dashboard", methods=["GET"])
-def dashget():
-     return redirect("/")
-
-
-
 #                   ADMIN     
 ############################################################
 
@@ -110,6 +101,23 @@ def adminRem():
           svuotaTabella(conn,request.form["nomeTabella"])
      return redirect("/admin/dashboard")
 
+@app.route("/admin/rimuovi-admin/<id>", methods=["GET"])
+def rimuoviAdminID(id):
+     conn = create_connection(database)
+     with conn:
+          rimuoviAdmin(conn, id)
+     return redirect("/admin/dashboard")
+
+
+@app.route("/admin/rimuovi-utente/<id>", methods=["GET"])
+def rimuoviUserID(id):
+     conn = create_connection(database)
+     with conn:
+          rimuoviUtente(conn, id)
+     return redirect("/admin/dashboard")
+
+
+
 @app.route("/admin/vedi", methods=["POST"])
 def vedLog():
      conn = create_connection(database)
@@ -129,7 +137,12 @@ def vedLog():
 
 
 
+#                   GESTIONE URL     
+############################################################
 
+@app.route("/admin/dashboard", methods=["GET"])
+def dashget():
+     return redirect("/")
 
 
 

@@ -32,6 +32,7 @@ def vediLogin(conn):
       <th scope="col">#</th>
       <th scope="col">Username</th>
       <th scope="col">Email</th>
+      <th scope="col">ELIMINA</th>
     </tr>
   </thead>
   <tbody> 
@@ -43,6 +44,7 @@ def vediLogin(conn):
          <th scope="row">{row["id_utente"]}</th>
          <td>{row["username"]}</td>
          <td>{row["email"]}</td>
+         <td><a class="nav-link" style="color:red;" href="/admin/rimuovi-utente/{row["id_utente"]}">Elimina</a></td>
         </tr>
          """
     ris += """</tbody>
@@ -75,6 +77,7 @@ def vediAdmin(conn):
       <th scope="col">#</th>
       <th scope="col">Username</th>
       <th scope="col">Permessi</th>
+      <th scope="col">ELIMINA</th>
     </tr>
   </thead>
   <tbody> 
@@ -86,6 +89,7 @@ def vediAdmin(conn):
          <th scope="row">{row["id_admin"]}</th>
          <td>{row["user"]}</td>
          <td>{row["lvl_permessi"]}</td>
+         <td><a class="nav-link" style="color:red;" href="/admin/rimuovi-admin/{row["id_admin"]}">Elimina</a></td>
         </tr>
          """
     ris += """</tbody>
@@ -123,3 +127,18 @@ def adminLogin(conn, user, psw):
             permessi = row["lvl_permessi"]
             return True, permessi
         return False, 0
+
+
+def rimuoviUtente(conn, id):
+    cur = conn.cursor()
+
+    sql = f"DELETE FROM login WHERE id_utente = '{id}'"
+    cur.execute(sql)
+    conn.commit()
+
+def rimuoviAdmin(conn, id):
+    cur = conn.cursor()
+
+    sql = f"DELETE FROM admin WHERE id_admin = '{id}'"
+    cur.execute(sql)
+    conn.commit()
