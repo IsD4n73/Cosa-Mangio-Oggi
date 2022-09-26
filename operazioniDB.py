@@ -1,6 +1,6 @@
 import sqlite3
 
-
+# LOGIN UTENTE
 def login(conn, email, psw):
     log = False
     cur = conn.cursor()
@@ -15,7 +15,7 @@ def login(conn, email, psw):
 
 
 
-
+# REGISTRA UTENTE
 def register(conn, email, psw, user):
     cur = conn.cursor()
 

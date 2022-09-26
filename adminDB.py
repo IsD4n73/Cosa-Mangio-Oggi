@@ -4,12 +4,14 @@ import sqlite3
 # Il file contiene tutte le funzioni per operazioni sul DB da admin 
 # ad esempio svuotare una tabella oppure eliminare una riga specifica
 
+# SVUOTA TABELLA
 def svuotaTabella(conn, tabella):
     cur = conn.cursor()
 
     sql = f"DELETE FROM {tabella}"
     cur.execute(sql)
 
+# VEDI TABELLA LOGIN
 def vediLogin(conn):
     cur = conn.cursor()
     cur.execute("SELECT * FROM login")
@@ -55,6 +57,7 @@ def vediLogin(conn):
     """
     return ris
 
+# VEDI TABELLA ADMIN
 def vediAdmin(conn):
     cur = conn.cursor()
     cur.execute("SELECT * FROM admin")
@@ -101,6 +104,7 @@ def vediAdmin(conn):
     return ris
 
 
+# AGGIUNGI ADMIN
 def addAdmin(conn, user, psw, lvl):
     cur = conn.cursor()
 
@@ -116,6 +120,7 @@ def addAdmin(conn, user, psw, lvl):
     conn.commit()
     return "Admin inserito"
 
+# LOGIN 
 def adminLogin(conn, user, psw):
     cur = conn.cursor()
     sql = f"SELECT * FROM admin WHERE user = '{user}' AND password = '{psw}'"
@@ -128,7 +133,7 @@ def adminLogin(conn, user, psw):
             return True, permessi
         return False, 0
 
-
+# RIMUOVI UTENTE
 def rimuoviUtente(conn, id):
     cur = conn.cursor()
 
@@ -136,6 +141,7 @@ def rimuoviUtente(conn, id):
     cur.execute(sql)
     conn.commit()
 
+# RIMUOVI ADMIN
 def rimuoviAdmin(conn, id):
     cur = conn.cursor()
 
