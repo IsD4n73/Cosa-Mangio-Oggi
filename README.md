@@ -8,4 +8,6 @@ pip install Flask
  ```
 
 ## Endpoints
--  work in progress
+- /login
+- /registrati
+- work in progress
