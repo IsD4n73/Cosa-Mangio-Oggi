@@ -9,6 +9,11 @@ app.config["DEBUG"] = True
 app.secret_key = "COsaMangioOggKeySecret23"
 
 
+#                   ERRORI     
+############################################################
+@app.errorhandler(404)
+def paginaNonTrovata(e):
+     return render_template("error.html", cod="404", msg="PAGE NOT FOUND"), 404
 
 
 #                   URLS     
