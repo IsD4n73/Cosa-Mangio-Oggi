@@ -8,15 +8,23 @@ Ogni utente ha a disposizione X vite per indovinare, quando indovina verranno ag
 Python, Flask, html, css, javascript, Sql Lite
 
 ---
- 
-## Requisiti
 
- ```
-pip install Flask
+# Uso
 
- ```
+## Sito Web
+> ///
 
 ## Endpoints
 - /login
 - /registrati
 - work in progress
+
+---
+# Dev
+
+## Requisiti
+
+ ```
+pip install Flask
+
+ ``` 
