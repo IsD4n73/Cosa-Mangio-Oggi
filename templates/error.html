@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{cod}}  - Not Found</title>
+  <link rel="stylesheet" href="{{url_for('static', filename='css/error-page.css')}} ">
+
+</head>
+<body>
+
+<body>
+    <section class="notFound">
+        <div class="img">
+        <img src="{{url_for('static', filename='asset/error/backToTheHomepage.webp')}} " alt="Back to the Homepage"/>
+        <img src="{{url_for('static', filename='asset/error/Delorean.webp')}} " alt="El Delorean, El Doc y Marti McFly"/>
+        </div>
+        <div class="text">
+        <h1>{{cod}}</h1>
+        <h2>{{msg}}</h2>
+        <h3>BACK TO HOME?</h3>
+        <a href="/" class="yes">YES</a>
+        <a href="https://www.youtube.com/watch?v=G3AfIvJBcGo">NO</a>
+        </div>
+    </section>
+</body>
+
+  
+</body>
+</html>
+
+
