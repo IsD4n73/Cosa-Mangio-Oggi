@@ -18,7 +18,7 @@ Python, Flask, html, css, javascript, Sql Lite
 - /admin
 - /login
 - /registrati
-- [work in progress](https://github.com/IsD4n73/Cosa-Mangio-Oggi/edit/main/README.md#to-do)
+- [work in progress](https://github.com/IsD4n73/Cosa-Mangio-Oggi#to-do)
 
 ---
 # Dev
