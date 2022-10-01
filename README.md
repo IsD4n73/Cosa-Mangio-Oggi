@@ -15,9 +15,10 @@ Python, Flask, html, css, javascript, Sql Lite
 > ///
 
 ## Endpoints
+- /admin
 - /login
 - /registrati
-- work in progress
+- [work in progress](https://github.com/IsD4n73/Cosa-Mangio-Oggi/edit/main/README.md#to-do)
 
 ---
 # Dev
@@ -26,5 +27,16 @@ Python, Flask, html, css, javascript, Sql Lite
 
  ```
 pip install Flask
-
  ``` 
+> py app.py
+
+## To-Do
+- gestione vite
+- bacheca principale
+- profilo utente
+- indovina parola
+
+## Features
+- login utente
+- login admin
+- strumenti admin
