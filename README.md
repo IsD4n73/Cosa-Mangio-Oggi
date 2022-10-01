@@ -7,6 +7,8 @@ Ogni utente ha a disposizione X vite per indovinare, quando indovina verranno ag
 ### Develop
 Python, Flask, html, css, javascript, Sql Lite
 
+![LOGO](static/asset/user-avatar.png) 
+
 ---
 
 # Uso
