@@ -12,7 +12,7 @@ def svuotaTabella(conn, tabella):
     cur.execute(sql)
 
 # VEDI TABELLA LOGIN
-def vediLogin(conn):
+def vediLogin(conn, perm):
     cur = conn.cursor()
     cur.execute("SELECT * FROM login")
     rows = cur.fetchall()
@@ -45,9 +45,10 @@ def vediLogin(conn):
         <tr>
          <th scope="row">{row["id_utente"]}</th>
          <td>{row["username"]}</td>
-         <td>{row["email"]}</td>
-         <td><a class="nav-link" style="color:red;" href="/admin/rimuovi-utente/{row["id_utente"]}">Elimina</a></td>
-        </tr>
+         <td>{row["email"]}</td>"""
+        if perm >= 2:
+            ris += f"""<td><a class="nav-link" style="color:red;" href="/admin/rimuovi-utente/{row["id_utente"]}">Elimina</a></td>"""
+        ris += """</tr>
          """
     ris += """</tbody>
     </table>
@@ -58,11 +59,10 @@ def vediLogin(conn):
     return ris
 
 # VEDI TABELLA ADMIN
-def vediAdmin(conn):
+def vediAdmin(conn, perm):
     cur = conn.cursor()
     cur.execute("SELECT * FROM admin")
     rows = cur.fetchall()
-
     ris = """
     <!doctype html>
     <html lang="en">
@@ -91,9 +91,10 @@ def vediAdmin(conn):
         <tr>
          <th scope="row">{row["id_admin"]}</th>
          <td>{row["user"]}</td>
-         <td>{row["lvl_permessi"]}</td>
-         <td><a class="nav-link" style="color:red;" href="/admin/rimuovi-admin/{row["id_admin"]}">Elimina</a></td>
-        </tr>
+         <td>{row["lvl_permessi"]}</td>"""
+        if perm >= 3:
+            ris += f"""<td><a class="nav-link" style="color:red;" href="/admin/rimuovi-admin/{row["id_admin"]}">Elimina</a></td>"""
+        ris +="""</tr>
          """
     ris += """</tbody>
     </table>
@@ -148,3 +149,14 @@ def rimuoviAdmin(conn, id):
     sql = f"DELETE FROM admin WHERE id_admin = '{id}'"
     cur.execute(sql)
     conn.commit()
+
+
+# PERMESSI ADMIN
+def getAdminPerm(conn, admin):
+    cur = conn.cursor()
+    sql = f"SELECT * FROM admin WHERE user = '{admin}'"
+    cur.execute(sql)
+    rows = cur.fetchall()
+    for row in rows:
+        if row["user"] == admin:
+            return row["lvl_permessi"]

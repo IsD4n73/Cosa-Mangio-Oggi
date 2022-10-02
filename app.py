@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, session, jsonify, redirect
 from connection import create_connection
 from operazioniDB import getDomande, login,  register, getProfile
-from adminDB import addAdmin, rimuoviAdmin, rimuoviUtente, svuotaTabella, vediAdmin, vediLogin, adminLogin
+from adminDB import addAdmin, rimuoviAdmin, rimuoviUtente, svuotaTabella, vediAdmin, vediLogin, adminLogin, getAdminPerm
 from variabili import database
 
 app = Flask(__name__)
@@ -105,7 +105,7 @@ def adminLog():
 @app.route("/admin/dashboard", methods=["POST"])
 def adminDash():
      username = request.form["user"]
-     psw = request.form["psw"]
+     psw = request.form["psw"] 
      
      conn = create_connection(database)
      with conn:
@@ -123,7 +123,7 @@ def adminDash():
 # ADMIN LOGOUT
 @app.route("/admin/logout")
 def adminout():
-     session.pop("username", None)
+     session.pop("logged-admin", None)
      return redirect("/")
 
 # AGGIUNGI ADMIN
@@ -164,11 +164,13 @@ def rimuoviUserID(id):
 @app.route("/admin/vedi", methods=["POST"])
 def vedLog():
      conn = create_connection(database)
+     permessi = getAdminPerm(conn, session["logged-admin"])
+     print(permessi)
      with conn:
           if request.form["nomeTabella"] == "login":
-               return vediLogin(conn)
+               return vediLogin(conn, permessi)
           elif request.form["nomeTabella"]  == "admin":
-               return vediAdmin(conn)
+               return vediAdmin(conn, permessi)
           else:
                return redirect("/admin/dashboard")
 
