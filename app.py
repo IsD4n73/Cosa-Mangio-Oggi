@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, session, jsonify, redirect
 from connection import create_connection
-from operazioniDB import getDomande, login,  register
+from operazioniDB import getDomande, login,  register, getProfile
 from adminDB import addAdmin, rimuoviAdmin, rimuoviUtente, svuotaTabella, vediAdmin, vediLogin, adminLogin
 from variabili import database
 
@@ -27,7 +27,31 @@ def main():
      <a href='/admin'> Admin </a> <br>
      <a href='/login'> Login </a> <br>
      <a href='/registrati'> Registrati </a> <br>
+     <a href='/profilo'> Profilo </a> <br>
      """
+
+
+# PROFILO
+@app.route('/profilo')
+def prof():
+     
+     conn = create_connection(database)
+     try:
+          username = session["logged-user"]
+     except:
+          return redirect("/login")
+
+     with conn:
+          user, coins, domande, risposte = getProfile(conn, username)
+          return render_template("profilo.html", coins=coins, domande=domande, risposte=risposte, username=user)
+
+
+# LOGOUT
+@app.route('/logout')
+def userLogout():
+     session.pop("logged-user", None)
+     return redirect("/")
+
 
 # LOGIN GET
 @app.route('/login', methods=["GET"])
@@ -43,9 +67,10 @@ def entrata():
 
      conn = create_connection(database)
      with conn:
-          loged = login(conn, email, password)
+          loged, username = login(conn, email, password)
           if loged:
-               return redirect("/user")
+               session["logged-user"] = username
+               return redirect("/profilo")
           else:
                return redirect("/login")
 

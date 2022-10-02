@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Profilo</title>
+  <meta name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" href="{{url_for('static', filename='css/profilo.css')}}">
+
+</head>
+<body>
+
+<div class="wrapper">
+  <div class="profile-card js-profile-card">
+    <div class="profile-card__img">
+      <img src="{{url_for('static', filename='asset/user-avatar.png')}}" alt="profile card">
+    </div>
+
+    <div class="profile-card__cnt js-profile-cnt">
+      <div class="profile-card__name">{{username}}</div>
+
+      <div class="profile-card__txt">Front-end Developer</div>
+      
+      <div class="profile-card-loc">
+        <span class="profile-card-loc__icon">
+          <svg class="icon"><use xlink:href="#icon-location"></use></svg>
+        </span>
+
+        <span class="profile-card-loc__txt">
+          Istanbul, Turkey
+        </span>
+      </div>
+
+      <div class="profile-card-inf">
+        <div class="profile-card-inf__item">
+          <div class="profile-card-inf__title">{{domande}}</div>
+          <div class="profile-card-inf__txt">Domande Pubblicate</div>
+        </div>
+
+        <div class="profile-card-inf__item">
+          <div class="profile-card-inf__title">{{coins}}</div>
+          <div class="profile-card-inf__txt">Coins</div>
+        </div>
+
+        <div class="profile-card-inf__item">
+          <div class="profile-card-inf__title">{{risposte}}</div>
+          <div class="profile-card-inf__txt">Risposte Corrette</div>
+        </div>
+
+      </div>
+      <div class="profile-card-ctr">
+        <button class="profile-card__button button--blue js-message-btn">Modifica Profilo</button>
+        <button class="profile-card__button button--orange"><a href="/logout">Logout</a></button>
+      </div>
+    </div>
+  </div>
+
+</div>
+  <script  src="{{url_for('static', filename='js/profilo.css')}}"></script>
+
+</body>
+</html>

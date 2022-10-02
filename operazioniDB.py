@@ -3,6 +3,7 @@ import sqlite3
 # LOGIN UTENTE
 def login(conn, email, psw):
     log = False
+    user = ""
     cur = conn.cursor()
     sql = f"SELECT * FROM login WHERE email = '{email}' AND password = '{psw}'"
     cur.execute(sql)
@@ -11,7 +12,8 @@ def login(conn, email, psw):
     for row in rows:
         if row["email"] == email and row["password"] == psw:
             log = True
-    return log
+            user = row["username"]
+    return log, user
 
 
 
@@ -32,6 +34,30 @@ def register(conn, email, psw, user):
     cur.execute(sql)
     conn.commit()
     return "Utente registrato!"
+
+
+# PROFILO UTENTE
+def getProfile(conn, user):
+    cur = conn.cursor()
+
+    sql = f"SELECT * FROM login WHERE username = '{user}'"
+    cur.execute(sql)
+    rows = cur.fetchall()
+    for row in rows:
+        username = row["username"]
+        coins = row["coins"]
+        domande = row["domande_pubblicate"]
+        risposte = row["risposte_date"]
+    return username, coins, domande, risposte
+
+
+
+
+
+
+
+
+
 
 
 # OTTIENI DOMANDE
