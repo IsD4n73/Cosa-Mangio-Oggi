@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Indovina</title>
+  
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Poppins&amp;display=swap'>
+
+	<link rel="stylesheet" href="{{url_for('static', filename='css/indovina.css')}}">
+
+</head>
+<body>
+<div class="wrapper">
+	
+	<div class="container">
+		<form method="post" action="">
+		<div class="search-box">
+				<input type="text" placeholder="Prova ad indovinare..." id="inp-word"/>
+				<button id="search-btn" type="submit">Vai</button>	
+		</div>
+		</form>
+		<div id="result" class="result"></div>
+	</div>
+	<a href="/">Torna alla Home</a>
+</div>
+</body>
+</html>

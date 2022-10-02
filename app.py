@@ -11,9 +11,16 @@ app.secret_key = "COsaMangioOggKeySecret23"
 
 #                   ERRORI     
 ############################################################
+
+# 404 PAGINA NON TROVATA
 @app.errorhandler(404)
 def paginaNonTrovata(e):
      return render_template("error.html", cod="404", msg="PAGE NOT FOUND"), 404
+
+# 405 NETODO NON PERMESSO
+@app.errorhandler(405)
+def paginaNonTrovata(e):
+     return render_template("error.html", cod="405", msg="METHOD NOT ALLOWED"), 405
 
 
 #                   URLS     
@@ -186,16 +193,9 @@ def vedLog():
 
 
 
-
-
-
-
 #                   GESTIONE URL     
 ############################################################
 
-# @app.route("/admin/dashboard", methods=["GET"])
-# def dashget():
-#      return redirect("/")
 
 
 
@@ -210,6 +210,7 @@ def test():
      with conn:
           domande = getDomande(conn)
           return domande
+
 
 if __name__== "__main__":
     app.run()
