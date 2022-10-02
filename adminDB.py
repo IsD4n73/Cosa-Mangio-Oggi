@@ -52,6 +52,9 @@ def vediLogin(conn, perm):
          """
     ris += """</tbody>
     </table>
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <a class="btn btn-primary" apparence="button" href="/admin/dashboard">Torna Indietro</a>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     </body>
     </html>
@@ -98,6 +101,10 @@ def vediAdmin(conn, perm):
          """
     ris += """</tbody>
     </table>
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <a class="btn btn-primary" aparence="button" href="/admin/dashboard">Torna Indietro</a>
+    </div>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     </body>
     </html>

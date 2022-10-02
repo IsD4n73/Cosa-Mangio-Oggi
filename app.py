@@ -23,7 +23,6 @@ def paginaNonTrovata(e):
 @app.route('/')
 def main():
      return """
-     App.py <br>
      <a href='/admin'> Admin </a> <br>
      <a href='/login'> Login </a> <br>
      <a href='/registrati'> Registrati </a> <br>
@@ -102,11 +101,18 @@ def adminLog():
      return render_template("admin-login.html")
 
 # ADMIN DASHBOARD
-@app.route("/admin/dashboard", methods=["POST"])
+@app.route("/admin/dashboard", methods=["GET", "POST"])
 def adminDash():
-     username = request.form["user"]
-     psw = request.form["psw"] 
-     
+     try:
+          username = session["logged-admin"]
+          psw = session["admin-psw"] 
+     except:
+          try:
+               username = request.form["user"]
+               psw = request.form["psw"]
+          except:
+               redirect("/admin")
+
      conn = create_connection(database)
      with conn:
           try:
@@ -116,6 +122,7 @@ def adminDash():
                
           if login:
                session["logged-admin"] = username
+               session["admin-psw"] = psw
                return render_template("admin-dash.html", lvlPermessi=permessi)
           else:
                return redirect("/admin")
@@ -124,6 +131,7 @@ def adminDash():
 @app.route("/admin/logout")
 def adminout():
      session.pop("logged-admin", None)
+     session.pop("admin-psw", None)
      return redirect("/")
 
 # AGGIUNGI ADMIN
@@ -185,9 +193,9 @@ def vedLog():
 #                   GESTIONE URL     
 ############################################################
 
-@app.route("/admin/dashboard", methods=["GET"])
-def dashget():
-     return redirect("/")
+# @app.route("/admin/dashboard", methods=["GET"])
+# def dashget():
+#      return redirect("/")
 
 
 

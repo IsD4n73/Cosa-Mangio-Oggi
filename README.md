@@ -20,6 +20,7 @@ Python, Flask, html, css, javascript, Sql Lite
 - /admin
 - /login
 - /registrati
+- /profilo
 - [work in progress](https://github.com/IsD4n73/Cosa-Mangio-Oggi#to-do)
 
 ---
@@ -35,10 +36,10 @@ pip install Flask
 ## To-Do
 - gestione vite
 - bacheca principale
-- profilo utente
 - indovina parola
 
 ## Features
 - login utente
 - login admin
 - strumenti admin
+- profilo utente
