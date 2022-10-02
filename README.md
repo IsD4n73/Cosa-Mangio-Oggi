@@ -50,4 +50,5 @@ pip install Flask
 > Valori HEX
  
 `#d81e5b` > Colore primario ![#d81e5b](https://via.placeholder.com/15/d81e5b/d81e5b.png) 
+
 `#c4d7d1` > Colore secondario ![c4d7d1](https://via.placeholder.com/15/c4d7d1/c4d7d1.png) 
