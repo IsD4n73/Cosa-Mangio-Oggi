@@ -126,12 +126,12 @@ def adminLogin(conn, user, psw):
     sql = f"SELECT * FROM admin WHERE user = '{user}' AND password = '{psw}'"
     cur.execute(sql)
     rows = cur.fetchall()
-
+    permessi = 0
     for row in rows:
         if row["user"] == user and row["password"] == psw:
             permessi = row["lvl_permessi"]
             return True, permessi
-        return False, 0
+        return False, permessi
 
 # RIMUOVI UTENTE
 def rimuoviUtente(conn, id):

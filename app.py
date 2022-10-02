@@ -106,10 +106,14 @@ def adminLog():
 def adminDash():
      username = request.form["user"]
      psw = request.form["psw"]
-
+     
      conn = create_connection(database)
      with conn:
-          login, permessi = adminLogin(conn, username, psw)
+          try:
+               login, permessi = adminLogin(conn, username, psw)
+          except:
+               return redirect("/admin")
+               
           if login:
                session["logged-admin"] = username
                return render_template("admin-dash.html", lvlPermessi=permessi)
