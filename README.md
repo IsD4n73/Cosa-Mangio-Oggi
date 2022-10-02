@@ -7,7 +7,7 @@ Ogni utente ha a disposizione X vite per indovinare, quando indovina verranno ag
 ### Develop
 Python, Flask, html, css, javascript, Sql Lite
 
-![LOGO](static/asset/user-avatar.png) 
+![LOGO](static/asset/Logo.png) 
 
 ---
 
@@ -37,9 +37,17 @@ pip install Flask
 - gestione vite
 - bacheca principale
 - indovina parola
+- aggiornamento colori
 
 ## Features
 - login utente
 - login admin
 - strumenti admin
 - profilo utente
+- monete
+
+## Colori
+> Valori HEX
+ 
+`#d81e5b` > Colore primario ![#d81e5b](https://via.placeholder.com/15/d81e5b/d81e5b.png) 
+`#c4d7d1` > Colore secondario ![c4d7d1](https://via.placeholder.com/15/c4d7d1/c4d7d1.png) 
