@@ -48,8 +48,8 @@ def prof():
           return redirect("/login")
 
      with conn:
-          user, coins, domande, risposte = getProfile(conn, username)
-          return render_template("profilo.html", coins=coins, domande=domande, risposte=risposte, username=user)
+          user, coins, domande, risposte, vite = getProfile(conn, username)
+          return render_template("profilo.html", coins=coins, domande=domande, risposte=risposte, username=user, vite=vite)
 
 
 # LOGOUT

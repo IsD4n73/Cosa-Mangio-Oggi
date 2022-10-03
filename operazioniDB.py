@@ -48,7 +48,8 @@ def getProfile(conn, user):
         coins = row["coins"]
         domande = row["domande_pubblicate"]
         risposte = row["risposte_date"]
-    return username, coins, domande, risposte
+        vite = row["vite"]
+    return username, coins, domande, risposte, vite
 
 
 
