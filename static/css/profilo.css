@@ -10,7 +10,7 @@ html {
 
 body {
   font-family: "Quicksand", sans-serif;
-  color: #324e63;
+  color: #d81e5b;
 }
 
 a, a:hover {
@@ -34,9 +34,9 @@ a, a:hover {
   padding: 50px 20px;
   padding-top: 100px;
   display: flex;
-  background-image: linear-gradient(-20deg, #ff2846 0%, #6944ff 100%);
+  background-image: linear-gradient(-20deg, #d81e5b 0%, #c4d7d1 100%);
   display: flex;
-  background-image: linear-gradient(-20deg, #ff2846 0%, #6944ff 100%);
+  background-image: linear-gradient(-20deg, #d81e5b 0%, #c4d7d1 100%);
 }
 @media screen and (max-width: 768px) {
   .wrapper {
@@ -79,7 +79,7 @@ a, a:hover {
   overflow: hidden;
   position: relative;
   z-index: 4;
-  box-shadow: 0px 5px 50px 0px #6c44fc, 0px 0px 0px 7px rgba(107, 74, 255, 0.5);
+  box-shadow: 0px 5px 50px 0px #d81e5b, 0px 0px 0px 7px #c4d7d1;
 }
 @media screen and (max-width: 576px) {
   .profile-card__img {
@@ -104,13 +104,13 @@ a, a:hover {
 .profile-card__name {
   font-weight: 700;
   font-size: 24px;
-  color: #6944ff;
+  color: #d81e5b;
   margin-bottom: 15px;
 }
 .profile-card__txt {
   font-size: 18px;
   font-weight: 500;
-  color: #324e63;
+  color: #d81e5b;
   margin-bottom: 15px;
 }
 .profile-card__txt strong {
@@ -161,22 +161,7 @@ a, a:hover {
   align-items: center;
   flex-wrap: wrap;
 }
-.profile-card-social__item {
-  display: inline-flex;
-  width: 55px;
-  height: 55px;
-  margin: 15px;
-  border-radius: 50%;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  background: #405de6;
-  box-shadow: 0px 7px 30px rgba(43, 98, 169, 0.5);
-  position: relative;
-  font-size: 21px;
-  flex-shrink: 0;
-  transition: all 0.3s;
-}
+
 @media screen and (max-width: 768px) {
   .profile-card-social__item {
     width: 50px;
@@ -188,34 +173,6 @@ a, a:hover {
   .profile-card-social__item:hover {
     transform: scale(1.2);
   }
-}
-.profile-card-social__item.facebook {
-  background: linear-gradient(45deg, #3b5998, #0078d7);
-  box-shadow: 0px 4px 30px rgba(43, 98, 169, 0.5);
-}
-.profile-card-social__item.twitter {
-  background: linear-gradient(45deg, #1da1f2, #0e71c8);
-  box-shadow: 0px 4px 30px rgba(19, 127, 212, 0.7);
-}
-.profile-card-social__item.instagram {
-  background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
-  box-shadow: 0px 4px 30px rgba(120, 64, 190, 0.6);
-}
-.profile-card-social__item.behance {
-  background: linear-gradient(45deg, #1769ff, #213fca);
-  box-shadow: 0px 4px 30px rgba(27, 86, 231, 0.7);
-}
-.profile-card-social__item.github {
-  background: linear-gradient(45deg, #333333, #626b73);
-  box-shadow: 0px 4px 30px rgba(63, 65, 67, 0.6);
-}
-.profile-card-social__item.codepen {
-  background: linear-gradient(45deg, #324e63, #414447);
-  box-shadow: 0px 4px 30px rgba(55, 75, 90, 0.6);
-}
-.profile-card-social__item.link {
-  background: linear-gradient(45deg, #d5135a, #f05924);
-  box-shadow: 0px 4px 30px rgba(223, 45, 70, 0.6);
 }
 .profile-card-social .icon-font {
   display: inline-flex;
@@ -343,24 +300,6 @@ a, a:hover {
   .profile-card-form__bottom {
     flex-wrap: wrap;
   }
-}
-.profile-card textarea {
-  width: 100%;
-  resize: none;
-  height: 210px;
-  margin-bottom: 20px;
-  border: 2px solid #dcdcdc;
-  border-radius: 10px;
-  padding: 15px 20px;
-  color: #324e63;
-  font-weight: 500;
-  font-family: "Quicksand", sans-serif;
-  outline: none;
-  transition: all 0.3s;
-}
-.profile-card textarea:focus {
-  outline: none;
-  border-color: #8a979e;
 }
 .profile-card__overlay {
   width: 100%;

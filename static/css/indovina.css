@@ -7,7 +7,7 @@
 	font-family: "Poppins", sans-serif;
 }
 body {
-	background-color: #ffc09c;
+	background-color: #d81e5b;
 }
 .wrapper {
 	width: 92vmin;
@@ -46,12 +46,12 @@ a {
 	width: 70%;
 	border: none;
 	outline: none;
-	border-bottom: 3px solid #ffc09c;
+	border-bottom: 3px solid #d81e5b;
 }
 .search-box button {
 	padding: 15px 0;
 	width: 25%;
-	background-color: #ffc09c;
+	background-color: #d81e5b;
 	border: none;
 	outline: none;
 	color: #ffffff;

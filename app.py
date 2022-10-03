@@ -212,5 +212,9 @@ def test():
           return domande
 
 
+@app.route("/test2")
+def test2():
+     return render_template("indovina.html")
+
 if __name__== "__main__":
     app.run()
