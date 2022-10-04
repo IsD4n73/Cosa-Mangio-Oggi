@@ -27,28 +27,29 @@ Python, Flask, html, css, javascript, Sql Lite
 # Dev
 
 ## Requisiti
-
 ```
 pip install Flask
 ``` 
-```
-pip install APScheduler
-```
 
+## Start
+Per avviare l'app:
 > py app.py
+
+Per resettare le vite dei giocatori: 
+> py resetVite.py
 
 ## To-Do
 - gestione vite
 - bacheca principale
 - indovina parola
-- aggiornamento colori
+- timer reset vite
 
 ## Features
-- login utente
-- login admin
-- strumenti admin
-- profilo utente
-- monete
+- Login utente
+- Login admin
+- Strumenti admin
+- Profilo utente
+- Monete
 
 ## Colori
 > Valori HEX
