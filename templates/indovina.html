@@ -13,13 +13,14 @@
 <div class="wrapper">
 	
 	<div class="container">
-		<form method="post" action="">
+		<form method="post" action="/indovina/risposta/{{id}}">
 		<div class="search-box">
-				<input type="text" placeholder="Prova ad indovinare..." id="inp-word"/>
+				<input type="text" placeholder="Prova ad indovinare..." id="inp-word" name="inp-word" required/>
 				<button id="search-btn" type="submit">Vai</button>	
 		</div>
 		</form>
-		<div id="result" class="result"></div>
+
+		<div id="result" class="result">Messaggio dall'utente:<b> {{msg}}</b></div>
 	</div>
 	<a href="/">Torna alla Home</a>
 </div>

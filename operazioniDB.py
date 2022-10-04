@@ -54,7 +54,18 @@ def getProfile(conn, user):
 
 
 
+# OTTIENI DOMANDE
+def getSingolaDomanda(conn, id):
+    cur = conn.cursor()
 
+    sql = f"SELECT * FROM domande WHERE id_domanda = {id}"
+    cur.execute(sql)
+    rows = cur.fetchall()
+    for row in rows:
+        messaggio = row["messaggio"]
+        risposta = row["risposta"]
+
+    return messaggio, risposta
 
 
 
@@ -76,5 +87,4 @@ def getDomande(conn):
         {row["messaggio"]} \n
         {row["utente"]} \n\n
         """
-    print(ris)
     return ris

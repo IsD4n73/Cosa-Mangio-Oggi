@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, session, jsonify, redirect
 from connection import create_connection
-from operazioniDB import getDomande, login,  register, getProfile
+from operazioniDB import getDomande, login,  register, getProfile, getSingolaDomanda
 from adminDB import addAdmin, rimuoviAdmin, rimuoviUtente, svuotaTabella, vediAdmin, vediLogin, adminLogin, getAdminPerm
 from variabili import database
 
@@ -97,6 +97,24 @@ def regi():
      with conn:
           registrato = register(conn, email, password, username)
           return render_template("register.html", mess=registrato)
+
+
+
+@app.route("/indovina/risposta/<id>", methods=["POST", "GET"])
+def provaIndovina(id):
+     try:
+          parola = request.form["inp-word"] 
+     except:
+          redirect("/indovina/")  
+           
+     conn = create_connection(database)
+     with conn:
+          messaggio, risposta = getSingolaDomanda(conn, id)
+     if parola == risposta:
+          return "Indovinato"
+     else:
+          return "Coglione"
+
 
 
 #                   ADMIN     
@@ -212,9 +230,12 @@ def test():
           return domande
 
 
-@app.route("/test2")
-def test2():
-     return render_template("indovina.html")
+@app.route("/test2/<id>")
+def test2(id):
+     conn = create_connection(database)
+     with conn:
+          messaggio, risposta = getSingolaDomanda(conn, id)
+     return render_template("indovina.html", msg=messaggio, ris=risposta, id=id)
 
 if __name__== "__main__":
     app.run()
