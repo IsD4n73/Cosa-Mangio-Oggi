@@ -28,9 +28,13 @@ Python, Flask, html, css, javascript, Sql Lite
 
 ## Requisiti
 
- ```
+```
 pip install Flask
- ``` 
+``` 
+```
+pip install APScheduler
+```
+
 > py app.py
 
 ## To-Do
