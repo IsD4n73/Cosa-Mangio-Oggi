@@ -19,16 +19,14 @@
     <div class="profile-card__cnt js-profile-cnt">
       <div class="profile-card__name">{{username}}</div>
 
-      <div class="profile-card__txt">{{desc}}</div>
+      <div class="profile-card__txt">{{desc}} <br> <b><span id="time"></span></b>  al reset delle vite</div>
       
       <div class="profile-card-loc">
         <span class="profile-card-loc__icon">
           <svg class="icon"><use xlink:href="#icon-location"></use></svg>
         </span>
 
-        <span class="profile-card-loc__txt">
-          Ti rimangono {{vite}} vite per oggi
-        </span>
+        <span class="profile-card-loc__txt">Ti rimangono {{vite}} vite</span>
       </div>
 
       <div class="profile-card-inf">
@@ -56,6 +54,35 @@
   </div>
 
 </div>
+
+<script>
+(function() {
+  var start = new Date;
+  start.setHours(24, 0, 0);
+
+  function pad(num) {
+    return ("0" + parseInt(num)).substr(-2);
+  }
+
+  function tick() {
+    var now = new Date;
+    if (now > start) { 
+      start.setDate(start.getDate() + 1);
+    }
+    var remain = ((start - now) / 1000);
+    var hh = pad((remain / 60 / 60) % 60);
+    var mm = pad((remain / 60) % 60);
+    var ss = pad(remain % 60);
+    document.getElementById('time').innerHTML =
+      hh + ":" + mm + ":" + ss;
+    setTimeout(tick, 1000);
+  }
+
+  document.addEventListener('DOMContentLoaded', tick);
+})();
+
+</script>
+
 
 </body>
 </html>
