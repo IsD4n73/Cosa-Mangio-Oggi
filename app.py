@@ -1,3 +1,4 @@
+import re
 from flask import Flask, render_template, request, session, jsonify, redirect
 from connection import create_connection
 from operazioniDB import getDomande, login,  register, getProfile, getSingolaDomanda
@@ -102,6 +103,12 @@ def regi():
 
 @app.route("/indovina/risposta/<id>", methods=["POST", "GET"])
 def provaIndovina(id):
+     try: 
+          if session["logged-user"] == None:
+               return redirect("/login")
+     except:
+          return redirect("/login")
+
      try:
           parola = request.form["inp-word"] 
      except:
@@ -232,10 +239,23 @@ def test():
 
 @app.route("/test2/<id>")
 def test2(id):
+     try: 
+          if session["logged-user"] == None:
+               return redirect("/login")
+     except:
+          return redirect("/login")
+
      conn = create_connection(database)
      with conn:
           messaggio, risposta = getSingolaDomanda(conn, id)
      return render_template("indovina.html", msg=messaggio, ris=risposta, id=id)
+
+
+
+
+
+
+
 
 if __name__== "__main__":
     app.run()
