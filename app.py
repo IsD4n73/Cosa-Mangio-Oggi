@@ -1,4 +1,5 @@
 import re
+from django.shortcuts import render
 from flask import Flask, render_template, request, session, jsonify, redirect
 from connection import create_connection
 from operazioniDB import getDomande, login,  register, getProfile, getSingolaDomanda
@@ -118,9 +119,9 @@ def provaIndovina(id):
      with conn:
           messaggio, risposta = getSingolaDomanda(conn, id)
      if parola == risposta:
-          return "Indovinato"
+          return render_template("status.html", stat=True, id=id)
      else:
-          return "Coglione"
+          return render_template("status.html", stat=False, id=id)
 
 
 

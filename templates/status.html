@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>status</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/status.css')}}">
+  <link rel="icon" href="{{url_for('static', filename='asset/Logo.png')}}">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+
+</head>
+<body>
+
+<div id="container">
+
+
+  {% if stat == True %}
+  <div id="success-box">
+    <div class="dot"></div>
+    <div class="dot two"></div>
+    <div class="face">
+      <div class="eye"></div>
+      <div class="eye right"></div>
+      <div class="mouth happy"></div>
+    </div>
+
+    <div class="shadow scale"></div>
+    <div class="message"><h1 class="alert">Completato!</h1><p>Hai indovinato correttamente la parola <b>{{ris}}</b>.<br>Ti sono stati aggiunti +20 coins!!</p></div>
+    <form action="/" method="get">
+      <button class="button-box"><h1 class="green">Continua</h1></button>
+    </form>
+  </div>
+  
+  {% else %}
+  <div id="error-box">
+    <div class="dot"></div>
+    <div class="dot two"></div>
+    <div class="face2">
+      <div class="eye"></div>
+      <div class="eye right"></div>
+      <div class="mouth sad"></div>
+    </div>
+    <div class="shadow move"></div>
+    <div class="message"><h1 class="alert">Errore!</h1><p>oh no, non hai indovinato.<br>Ti è stata tolta una vita...</p></div>
+    <form action="/indovina/{{id}}" method="get">
+      <button class="button-box"><h1 class="red">Riprova</h1></button>
+    </form>
+  </div>
+  {% endif %}
+
+</div>
+
+  
+</body>
+</html>
