@@ -2,7 +2,7 @@ import re
 from django.shortcuts import render
 from flask import Flask, render_template, request, session, jsonify, redirect
 from connection import create_connection
-from operazioniDB import getDomande, login,  register, getProfile, getSingolaDomanda, rimuoviVita, editCoins
+from operazioniDB import getDomande, getVite, login,  register, getProfile, getSingolaDomanda, rimuoviVita, editCoins
 from adminDB import addAdmin, rimuoviAdmin, rimuoviUtente, svuotaTabella, vediAdmin, vediLogin, adminLogin, getAdminPerm
 from variabili import database, goodCoins
 
@@ -42,13 +42,12 @@ def main():
 # PROFILO
 @app.route('/profilo')
 def prof():
-     
-     conn = create_connection(database)
      try:
           username = session["logged-user"]
      except:
           return redirect("/login")
 
+     conn = create_connection(database)
      with conn:
           user, coins, domande, risposte, vite = getProfile(conn, username)
           return render_template("profilo.html", coins=coins, domande=domande, risposte=risposte, username=user, vite=vite)
@@ -109,6 +108,7 @@ def provaIndovina(id):
                return redirect("/login")
      except:
           return redirect("/login")
+     
 
      try:
           parola = request.form["inp-word"].lower() 
@@ -125,6 +125,7 @@ def provaIndovina(id):
           rimuoviVita(conn, session["logged-user"])
           return render_template("status.html", stat=False, id=id)
 
+
 # CARICA SCHERMATA INSERIMENTO PAROLA
 @app.route("/indovina/<id>")
 def indovinaParola(id):
@@ -136,6 +137,8 @@ def indovinaParola(id):
 
      conn = create_connection(database)
      with conn:
+          if getVite(conn, session["logged-user"]) <= 0:
+               return redirect("/")
           messaggio, risposta = getSingolaDomanda(conn, id)
      return render_template("indovina.html", msg=messaggio, ris=risposta, id=id)
 

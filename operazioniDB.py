@@ -83,6 +83,16 @@ def editCoins(conn, user, coins):
     conn.commit()
 
 
+# OTTIEN VITE DA UTENTE
+def getVite(conn, user):
+    cur = conn.cursor()
+
+    sql = f"SELECT * FROM login WHERE username = '{user}'"
+    cur.execute(sql)
+    rows = cur.fetchall()
+    for row in rows:
+        return row["vite"]
+
 
 # OTTIENI DOMANDE
 def getDomande(conn):
