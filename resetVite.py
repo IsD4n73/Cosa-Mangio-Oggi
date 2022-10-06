@@ -10,7 +10,7 @@ def resetVite():
     cur.execute(sql)
     conn.commit()
 
-    print("\n\nLe vite sono state resettate.\n\n")
+    print("\nLe vite sono state resettate.")
 
 
 if __name__== "__main__":

@@ -68,7 +68,19 @@ def getSingolaDomanda(conn, id):
     return messaggio, risposta
 
 
+# RIMUOVI VITA
+def rimuoviVita(conn, user):
+    cur = conn.cursor()
+    sql = f"UPDATE login SET vite = vite - 1 WHERE username = '{user}'"
+    cur.execute(sql)
+    conn.commit()
 
+# MODIFICA COINS
+def editCoins(conn, user, coins):
+    cur = conn.cursor()
+    sql = f"UPDATE login SET coins = coins + {coins} WHERE username = '{user}'"
+    cur.execute(sql)
+    conn.commit()
 
 
 

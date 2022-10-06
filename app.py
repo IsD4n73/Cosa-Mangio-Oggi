@@ -2,9 +2,9 @@ import re
 from django.shortcuts import render
 from flask import Flask, render_template, request, session, jsonify, redirect
 from connection import create_connection
-from operazioniDB import getDomande, login,  register, getProfile, getSingolaDomanda
+from operazioniDB import getDomande, login,  register, getProfile, getSingolaDomanda, rimuoviVita, editCoins
 from adminDB import addAdmin, rimuoviAdmin, rimuoviUtente, svuotaTabella, vediAdmin, vediLogin, adminLogin, getAdminPerm
-from variabili import database
+from variabili import database, goodCoins
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
@@ -101,7 +101,7 @@ def regi():
           return render_template("register.html", mess=registrato)
 
 
-
+# CONTROLLO PAROLA INSERITA
 @app.route("/indovina/risposta/<id>", methods=["POST", "GET"])
 def provaIndovina(id):
      try: 
@@ -111,17 +111,35 @@ def provaIndovina(id):
           return redirect("/login")
 
      try:
-          parola = request.form["inp-word"] 
+          parola = request.form["inp-word"].lower() 
      except:
-          redirect("/indovina/")  
+          redirect("/")  
            
      conn = create_connection(database)
      with conn:
           messaggio, risposta = getSingolaDomanda(conn, id)
-     if parola == risposta:
+     if parola == risposta.lower():
+          editCoins(conn, session["logged-user"], goodCoins)
           return render_template("status.html", stat=True, id=id)
      else:
+          rimuoviVita(conn, session["logged-user"])
           return render_template("status.html", stat=False, id=id)
+
+# CARICA SCHERMATA INSERIMENTO PAROLA
+@app.route("/indovina/<id>")
+def indovinaParola(id):
+     try: 
+          if session["logged-user"] == None:
+               return redirect("/login")
+     except:
+          return redirect("/login")
+
+     conn = create_connection(database)
+     with conn:
+          messaggio, risposta = getSingolaDomanda(conn, id)
+     return render_template("indovina.html", msg=messaggio, ris=risposta, id=id)
+
+
 
 
 
@@ -236,25 +254,6 @@ def test():
      with conn:
           domande = getDomande(conn)
           return domande
-
-
-@app.route("/test2/<id>")
-def test2(id):
-     try: 
-          if session["logged-user"] == None:
-               return redirect("/login")
-     except:
-          return redirect("/login")
-
-     conn = create_connection(database)
-     with conn:
-          messaggio, risposta = getSingolaDomanda(conn, id)
-     return render_template("indovina.html", msg=messaggio, ris=risposta, id=id)
-
-
-
-
-
 
 
 
