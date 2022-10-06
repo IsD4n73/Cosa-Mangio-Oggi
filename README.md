@@ -39,7 +39,6 @@ Per resettare le vite dei giocatori:
 > py resetVite.py
 
 ## To-Do
-- gestione vite
 - bacheca principale
 - indovina parola
 - timer reset vite
