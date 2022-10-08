@@ -21,6 +21,8 @@ Python, Flask, html, css, javascript, Sql Lite
 - /login
 - /registrati
 - /profilo
+- /indovina/<id>
+- /indovina/risposta/<id>
 - [work in progress](https://github.com/IsD4n73/Cosa-Mangio-Oggi#to-do)
 
 ---
