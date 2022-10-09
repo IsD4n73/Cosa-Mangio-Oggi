@@ -1,9 +1,10 @@
-from django.shortcuts import render
-from flask import Flask, render_template, request, session, jsonify, redirect
+from flask import Flask, render_template, request, session, redirect
 from connection import create_connection
-from operazioniDB import getDomande, getVite, login,  register, getProfile, getSingolaDomanda, rimuoviVita, editCoins, addVittoria
+from operazioniDB import getDomande, getVite, login,  register, getProfile, getSingolaDomanda, rimuoviVita, editCoins
+from operazioniDB import getCountDomande, addVittoria, getIdUtente
 from adminDB import addAdmin, rimuoviAdmin, rimuoviUtente, svuotaTabella, vediAdmin, vediLogin, adminLogin, getAdminPerm
 from variabili import database, goodCoins
+from json import loads
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
@@ -30,12 +31,24 @@ def paginaNonTrovata(e):
 # HOMEPAGE
 @app.route('/')
 def main():
-     return """
-     <a href='/admin'> Admin </a> <br>
-     <a href='/login'> Login </a> <br>
-     <a href='/registrati'> Registrati </a> <br>
-     <a href='/profilo'> Profilo </a> <br>
-     """
+     try:
+          user = session["logged-user"]
+     except:
+          return  """
+               <a href='/admin'> Admin </a> <br>
+               <a href='/login'> Login </a> <br>
+               <a href='/registrati'> Registrati </a> <br>
+               <a href='/profilo'> Profilo </a> <br>
+          """
+
+     conn = create_connection(database)
+     with conn:
+          id = getIdUtente(conn, user)
+          lunghezza = getCountDomande(conn, id)
+          lista = loads(getDomande(conn, id))
+          return render_template("index.html", domande=lista, lun=lunghezza)
+     
+    
 
 
 # PROFILO
@@ -258,7 +271,7 @@ def vedLog():
 def test():
      conn = create_connection(database)
      with conn:
-          domande = getDomande(conn)
+          domande = getDomande(conn, 1)
           return domande
 
 

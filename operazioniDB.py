@@ -1,4 +1,5 @@
 import sqlite3
+from json import dumps
 
 # LOGIN UTENTE
 def login(conn, email, psw):
@@ -95,21 +96,35 @@ def getVite(conn, user):
 
 
 # OTTIENI DOMANDE
-def getDomande(conn):
+def getDomande(conn, idUtente):
     cur = conn.cursor()
 
-    sql = f"SELECT * FROM domande ORDER BY RANDOM()"
+    sql = f"SELECT * FROM domande WHERE utente IS NOT {idUtente} ORDER BY RANDOM()"
     cur.execute(sql)
     rows = cur.fetchall()
-    ris = ""
+    data = []
+
     for row in rows:
-        ris += f"""
-        {row["id_domanda"]} \n
-        {row["risposta"]} \n
-        {row["messaggio"]} \n
-        {row["utente"]} \n\n
-        """
-    return ris
+        ris = {
+            "id" : row["id_domanda"],
+            "risposta" : row["risposta"],
+            "messaggio" : row["messaggio"],
+            "utente" : row["utente"],
+        }
+        data.append(ris)
+    
+    return dumps(data)
+
+# OTTIENI COUN DOMANDE
+def getCountDomande(conn, idUtente):
+    cur = conn.cursor()
+
+    sql = f"SELECT COUNT(*) AS tot FROM domande WHERE utente IS NOT {idUtente}"
+    cur.execute(sql)
+    rows = cur.fetchall()
+    for row in rows:
+        return row["tot"]
+
 
 # GESTIONE CORRETTE
 def addVittoria(conn, user):
@@ -117,3 +132,14 @@ def addVittoria(conn, user):
     sql = f"UPDATE login SET risposte_date = risposte_date + 1 WHERE username = '{user}'"
     cur.execute(sql)
     conn.commit()
+
+
+# GET ID UTENTE
+def getIdUtente(conn, user):
+    cur = conn.cursor()
+
+    sql = f"SELECT * FROM login WHERE username = '{user}'"
+    cur.execute(sql)
+    rows = cur.fetchall()
+    for row in rows:
+        return row["id_utente"]

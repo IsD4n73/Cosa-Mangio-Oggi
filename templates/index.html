@@ -1,12 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Che Mangio Oggi?</title>
+  <link rel="stylesheet" href="{{url_for('static', filename='css/cosa-mangio.css')}}">
+  <link rel="icon" href="{{url_for('static', filename='asset/Logo.png')}}">
+
 </head>
 <body>
-    <p>Home Page</p>
+
+<!-- <div class="message">
+  <span>Messaggio bacheca #12</span>
+  <p>
+    Questo è un messaggio di comunicazione da parte dello staff Geobadge per comunicarti che...
+  </p>
+  <a>Apri<ion-icon name="book-outline"></ion-icon></a>
+</div> -->
+
+
+
+<!-- <div class="tile blue-dark">
+  <div class="desc">
+    <div class="icon-wrapper">
+      <ion-icon name="business"></ion-icon>
+    </div>
+    <span class="step">STEP 1</span>
+    <span class="title">Le tue aziende</span>
+  </div>
+  <div class="links">
+    <a>Visualizza le tue aziende<ion-icon name="open-outline"></ion-icon></a>
+    <a>Crea una nuova azienda<ion-icon name="open-outline"></ion-icon></a>
+  </div>
+</div> -->
+
+<!-- 
+<div class="tile green-dark">
+  <div class="desc">
+    <div class="icon-wrapper">
+      <ion-icon name="people"></ion-icon>
+    </div>
+    <span class="step">STEP 4</span>
+    <span class="title">I tuoi lavoratori</span>
+  </div>
+  <div class="links">
+    <a>Visualizza i tuoi lavoratori<ion-icon name="open-outline"></ion-icon></a>
+    <a>Crea un nuovo lavoratore<ion-icon name="open-outline"></ion-icon></a>
+  </div>
+</div> -->
+
+{%for i in range(0, lun)%}
+
+<div class="tile blue">
+  <div class="desc">
+    <div class="icon-wrapper">
+      <ion-icon name="business"></ion-icon>
+    </div>
+    <span class="step">ID: {{domande[i]["id"]}}</span>
+    <span class="title">{{domande[i]["messaggio"]}}</span>
+  </div>
+  <div class="links">
+    <a href="/indovina/{{domande[i]['id']}}">Indovina<ion-icon name="open-outline"></ion-icon></a>
+  </div>
+</div>
+
+{%endfor%}
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
 </body>
 </html>

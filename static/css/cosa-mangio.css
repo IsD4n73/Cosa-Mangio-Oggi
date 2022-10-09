@@ -1,0 +1,191 @@
+body {
+  margin: 0;
+  padding: 10px;
+  font-family: "Nunito Sans";
+}
+
+.tile {
+  position: relative;
+  /* min-height: 120px; */
+  width: max-content;
+  width: 350px;
+  max-width: calc(100% - 40px);
+  overflow: hidden;
+  margin: 40px auto;
+  padding: 16px;
+  border-radius: 8px;
+  /* margin: 0 auto 20px; */
+  /* cursor: pointer; */
+  color: #5f6368;
+  border: 1px solid #c4d7d1;
+}
+.tile .desc {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr;
+  grid-gap: 0 12px;
+}
+.tile .icon-wrapper {
+  background-color: rgba(255, 255, 255, 0.3);
+  width: 52px;
+  height: 52px;
+  border-radius: 52px;
+  display: grid;
+  place-items: center;
+  grid-row: span 2;
+}
+.tile .icon-wrapper ion-icon {
+  font-size: 24px;
+}
+.tile .desc span {
+  grid-column: 2;
+}
+.tile .desc .step {
+  font-size: 10px;
+  font-weight: 800;
+  opacity: 0.8;
+}
+.tile .desc .title {
+  font-size: 24px;
+  font-weight: 700;
+}
+.tile .links {
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 12px;
+  margin-top: 14px;
+  justify-content: start;
+}
+.tile .links a {
+  cursor: pointer;
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  grid-gap: 0 8px;
+  border-radius: 24px;
+  padding: 6px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: rgba(216, 30, 91, 0.3);
+  transition: all .3s ease;
+}
+
+.tile.blue {
+  color: #d81e5b;
+}
+.tile.blue .links a {
+  background-color: rgba(216, 30, 91, 0.3);
+  color: #d81e5b;
+  text-decoration: none;
+}
+.tile.blue .links a:hover {
+  background-color: #d81e5b;
+  color: #fff;
+}
+
+
+
+.tile.blue-dark {
+  background-color: rgba(216, 30, 91, 0.3);
+  color: #d81e5b;
+}
+.tile.blue-dark .links a {
+  background-color: rgba(216, 30, 91, 0.3);
+  color: #d81e5b;
+  text-decoration: none;
+}
+.tile.blue-dark .links a:hover {
+  background-color: #d81e5b;
+  color: #fff;
+}
+
+.tile.green-dark {
+  background-color: #e6f4ea;
+  color: #137333;
+}
+.tile.green-dark .links a {
+  background-color: #c2e4cb;
+}
+.tile.green-dark .links a:hover {
+  background-color: #137333;
+  color: #fff;
+}
+
+
+/***********************/
+
+
+.message {
+  position: relative;
+  width: max-content;
+  width: 350px;
+  max-width: calc(100% - 40px);
+  overflow: hidden;
+  margin: 40px auto;
+  padding: 16px;
+  border-radius: 8px;
+  /* margin: 0 auto 20px; */
+  /* cursor: pointer; */
+  border: 1px solid #c4d7d1;
+  display: grid;
+  grid-gap: 0 12px;
+  cursor: pointer;
+}
+.message span {
+  color: #d81e5b;
+  font-size: 20px;
+  font-weight: 700;
+}
+.message p {
+  color: #5f6368;
+  font-size: 14px;
+}
+.message a {
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  justify-content: start;
+  width: fit-content;
+  grid-gap: 0 8px;
+  border-radius: 24px;
+  padding: 6px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #d81e5b;
+  background-color: rgba(216, 30, 91, 0.3);
+  transition: all .3s ease;
+}
+.message:hover a {
+  background-color: #d81e5b;
+  color: #fff;
+}
+
+
+
+.tile.blue-dark {
+  background-color: rgba(216, 30, 91, 0.3);
+  color: #d81e5b;
+  text-decoration: none;
+}
+.tile.blue-dark .links a {
+  background-color: rgba(216, 30, 91, 0.);
+  color: #d81e5b;
+  text-decoration: none;
+}
+.tile.blue-dark .links a:hover {
+  background-color: #d81e5b;
+  color: #fff;
+  text-decoration: none;
+}
+
+.tile.green-dark {
+  background-color: #e6f4ea;
+  color: #137333;
+}
+.tile.green-dark .links a {
+  background-color: #c2e4cb;
+}
+.tile.green-dark .links a:hover {
+  background-color: #137333;
+  color: #fff;
+}
