@@ -110,3 +110,10 @@ def getDomande(conn):
         {row["utente"]} \n\n
         """
     return ris
+
+# GESTIONE CORRETTE
+def addVittoria(conn, user):
+    cur = conn.cursor()
+    sql = f"UPDATE login SET risposte_date = risposte_date + 1 WHERE username = '{user}'"
+    cur.execute(sql)
+    conn.commit()

@@ -1,8 +1,7 @@
-import re
 from django.shortcuts import render
 from flask import Flask, render_template, request, session, jsonify, redirect
 from connection import create_connection
-from operazioniDB import getDomande, getVite, login,  register, getProfile, getSingolaDomanda, rimuoviVita, editCoins
+from operazioniDB import getDomande, getVite, login,  register, getProfile, getSingolaDomanda, rimuoviVita, editCoins, addVittoria
 from adminDB import addAdmin, rimuoviAdmin, rimuoviUtente, svuotaTabella, vediAdmin, vediLogin, adminLogin, getAdminPerm
 from variabili import database, goodCoins
 
@@ -109,17 +108,20 @@ def provaIndovina(id):
      except:
           return redirect("/login")
      
+     conn = create_connection(database)
+     if getVite(conn, session["logged-user"]) == 0:
+               return redirect("/")
 
      try:
           parola = request.form["inp-word"].lower() 
      except:
           redirect("/")  
            
-     conn = create_connection(database)
      with conn:
           messaggio, risposta = getSingolaDomanda(conn, id)
      if parola == risposta.lower():
           editCoins(conn, session["logged-user"], goodCoins)
+          addVittoria(conn, session["logged-user"])
           return render_template("status.html", stat=True, id=id)
      else:
           rimuoviVita(conn, session["logged-user"])
@@ -137,9 +139,10 @@ def indovinaParola(id):
 
      conn = create_connection(database)
      with conn:
-          if getVite(conn, session["logged-user"]) <= 0:
+          if getVite(conn, session["logged-user"]) == 0:
                return redirect("/")
-          messaggio, risposta = getSingolaDomanda(conn, id)
+          else:
+               messaggio, risposta = getSingolaDomanda(conn, id)
      return render_template("indovina.html", msg=messaggio, ris=risposta, id=id)
 
 
