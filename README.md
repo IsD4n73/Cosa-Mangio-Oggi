@@ -18,6 +18,7 @@ Python, Flask, html, css, javascript, Sql Lite
 
 ## Endpoints
 - /admin
+- /admin/dashboard
 - /login
 - /registrati
 - /profilo
@@ -42,8 +43,8 @@ Per resettare le vite dei giocatori:
 
 ## To-Do
 - bacheca principale
-- indovina parola
-- timer reset vite
+- modifica profilo
+- pubblicazioni 
 - livelli
 
 ## Features
@@ -52,6 +53,7 @@ Per resettare le vite dei giocatori:
 - Strumenti admin
 - Profilo utente
 - Monete
+- Vite
 
 ## Colori
 > Valori HEX
