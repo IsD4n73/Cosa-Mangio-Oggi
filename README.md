@@ -55,6 +55,15 @@ Per resettare le vite dei giocatori:
 - Monete
 - Vite
 
+
+## Livelli
+> XP
+
+`(lvl/0.07)^2`
+> Livello
+
+`0.07 * √XP`
+
 ## Colori
 > Valori HEX
  
