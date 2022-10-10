@@ -46,6 +46,7 @@ Per resettare le vite dei giocatori:
 - modifica profilo
 - pubblicazioni 
 - livelli
+- caricamento
 
 ## Features
 - Login utente
