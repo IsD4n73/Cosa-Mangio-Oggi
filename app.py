@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, session, redirect
 from connection import create_connection
 from operazioniDB import getDomande, getVite, login,  register, getProfile, getSingolaDomanda, rimuoviVita, editCoins
-from operazioniDB import getCountDomande, addVittoria, getIdUtente
+from operazioniDB import getCountDomande, addVittoria, getIdUtente, getUserFromQuest, getProfilePic
 from adminDB import addAdmin, rimuoviAdmin, rimuoviUtente, svuotaTabella, vediAdmin, vediLogin, adminLogin, getAdminPerm
 from variabili import database, goodCoins
 from json import loads
@@ -57,7 +57,9 @@ def prof():
      conn = create_connection(database)
      with conn:
           user, coins, domande, risposte, vite = getProfile(conn, username)
-          return render_template("profilo.html", coins=coins, domande=domande, risposte=risposte, username=user, vite=vite)
+          pic = getProfilePic(conn, username)
+          print(pic)
+          return render_template("profilo.html", coins=coins, domande=domande, risposte=risposte, username=user, vite=vite, propic=pic)
 
 
 # LOGOUT
@@ -110,6 +112,7 @@ def regi():
 # CONTROLLO PAROLA INSERITA
 @app.route("/indovina/risposta/<id>", methods=["POST", "GET"])
 def provaIndovina(id):
+     parola = ""
      try: 
           if session["logged-user"] == None:
                return redirect("/login")
@@ -117,28 +120,30 @@ def provaIndovina(id):
           return redirect("/login")
      
      conn = create_connection(database)
-     if getVite(conn, session["logged-user"]) == 0:
-               return redirect("/")
 
      try:
-          parola = request.form["inp-word"].lower() 
+          parola = request.form["inp-word"].lower()
+          if getVite(conn, session["logged-user"]) == 0:
+               return redirect("/") 
      except:
           redirect("/")  
            
      with conn:
-          messaggio, risposta = getSingolaDomanda(conn, id)
-     if parola == risposta.lower():
-          editCoins(conn, session["logged-user"], goodCoins)
-          addVittoria(conn, session["logged-user"])
-          return render_template("status.html", stat=True, id=id)
-     else:
-          rimuoviVita(conn, session["logged-user"])
-          return render_template("status.html", stat=False, id=id)
+          messaggio, risposta, user = getSingolaDomanda(conn, id)
+
+          if parola == risposta.lower():
+               editCoins(conn, session["logged-user"], goodCoins)
+               addVittoria(conn, session["logged-user"])
+               return render_template("status.html", stat=True, id=id)
+          else:
+               rimuoviVita(conn, session["logged-user"])
+               return render_template("status.html", stat=False, id=id)
 
 
 # CARICA SCHERMATA INSERIMENTO PAROLA
 @app.route("/indovina/<id>")
 def indovinaParola(id):
+     
      try: 
           if session["logged-user"] == None:
                return redirect("/login")
@@ -147,10 +152,16 @@ def indovinaParola(id):
 
      conn = create_connection(database)
      with conn:
+          username = getUserFromQuest(conn, id)
+          
+
           if getVite(conn, session["logged-user"]) == 0:
                return redirect("/")
           else:
-               messaggio, risposta = getSingolaDomanda(conn, id)
+               messaggio, risposta, user = getSingolaDomanda(conn, id)
+               
+               if user == username:
+                    return redirect("/")
      return render_template("indovina.html", msg=messaggio, ris=risposta, id=id)
 
 

@@ -65,8 +65,9 @@ def getSingolaDomanda(conn, id):
     for row in rows:
         messaggio = row["messaggio"]
         risposta = row["risposta"]
+        user = row["utente"]
 
-    return messaggio, risposta
+    return messaggio, risposta, user
 
 
 # RIMUOVI VITA
@@ -115,7 +116,7 @@ def getDomande(conn, idUtente):
     
     return dumps(data)
 
-# OTTIENI COUN DOMANDE
+# OTTIENI COUNT DOMANDE
 def getCountDomande(conn, idUtente):
     cur = conn.cursor()
 
@@ -143,3 +144,22 @@ def getIdUtente(conn, user):
     rows = cur.fetchall()
     for row in rows:
         return row["id_utente"]
+
+# GET UTENTE DALLA DOMANDA
+def getUserFromQuest(conn, id):
+    cur = conn.cursor()
+    sql = f"SELECT * FROM login L, domande D WHERE D.id_domanda = {id} AND L.id_utente = D.utente"
+    cur.execute(sql)
+    rows = cur.fetchall()
+    for row in rows:
+        return row["id_utente"]
+
+# GET PIC URL
+def getProfilePic(conn, username):
+    cur = conn.cursor()
+
+    sql = f"SELECT * FROM login WHERE username = '{username}'"
+    cur.execute(sql)
+    rows = cur.fetchall()
+    for row in rows:
+        return row["link_pic"]

@@ -13,7 +13,11 @@
 <div class="wrapper">
   <div class="profile-card js-profile-card">
     <div class="profile-card__img">
-      <img src="{{url_for('static', filename='asset/user-avatar.png')}}" alt="profile card">
+      {% if propic == None %}
+        <img src="{{url_for('static', filename='asset/user-avatar.png')}}" alt="profile card">
+      {% else %}
+        <img src="{{propic}}" alt="profile card">
+      {% endif %}
     </div>
 
     <div class="profile-card__cnt js-profile-cnt">
