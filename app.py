@@ -34,12 +34,7 @@ def main():
      try:
           user = session["logged-user"]
      except:
-          return  """
-               <a href='/admin'> Admin </a> <br>
-               <a href='/login'> Login </a> <br>
-               <a href='/registrati'> Registrati </a> <br>
-               <a href='/profilo'> Profilo </a> <br>
-          """
+          return  render_template("presentazione.html")
 
      conn = create_connection(database)
      with conn:
