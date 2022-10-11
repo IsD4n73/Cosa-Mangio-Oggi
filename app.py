@@ -162,7 +162,7 @@ def indovinaParola(id):
                
                if user == username:
                     return redirect("/")
-     return render_template("indovina.html", msg=messaggio, ris=risposta, id=id)
+     return render_template("indovina.html", msg=messaggio, ris=risposta, id=id, lunRis=len(risposta))
 
 
 
@@ -275,10 +275,7 @@ def vedLog():
 
 @app.route("/test")
 def test():
-     conn = create_connection(database)
-     with conn:
-          domande = getDomande(conn, 1)
-          return domande
+     return render_template("loading.html")
 
 
 

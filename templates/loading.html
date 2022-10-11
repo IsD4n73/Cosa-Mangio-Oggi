@@ -1,0 +1,51 @@
+
+
+<div class="loaderdiv" id="loaderdiv">
+    <img alt="Caricamento" src="{{url_for('static', filename='asset/loader.gif')}}" class="center">
+    <p class="center-txt">Caricamento...</p>
+</div>
+
+<style>
+    .loaderdiv{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0  ;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: #c4d7d1;
+        z-index: 1000;
+    }
+    
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 25px;
+    }
+
+    .center-txt{
+        text-align: center;
+        font-family: "Righteous", cursive;
+        color: #d81e5b;
+        font-weight: bold;
+        font-size: 30px;
+    }
+
+    .hidden {
+        display: none;
+    }
+</style>
+
+
+<script>
+function hideLoadingDiv() {
+  setTimeout(function(){
+    var d = document.getElementById('loaderdiv');
+    d.classList.add('hidden');
+  },2000)
+}
+
+hideLoadingDiv()
+</script>
