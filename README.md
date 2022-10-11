@@ -46,6 +46,7 @@ Per resettare le vite dei giocatori:
 - modifica profilo
 - pubblicazioni 
 - livelli
+- caricamento
 
 ## Features
 - Login utente
@@ -54,6 +55,15 @@ Per resettare le vite dei giocatori:
 - Profilo utente
 - Monete
 - Vite
+
+
+## Livelli
+> XP
+
+`(lvl/0.07)^2`
+> Livello
+
+`0.07 * √XP`
 
 ## Colori
 > Valori HEX
