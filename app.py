@@ -1,9 +1,9 @@
 from flask import Flask, render_template, request, session, redirect
 from connection import create_connection
 from operazioniDB import getDomande, getVite, login,  register, getProfile, getSingolaDomanda, rimuoviVita, editCoins
-from operazioniDB import getCountDomande, addVittoria, getIdUtente, getUserFromQuest, getProfilePic
+from operazioniDB import getCountDomande, addVittoria, getIdUtente, getUserFromQuest, getProfilePic, addXP, xpToLvl
 from adminDB import addAdmin, rimuoviAdmin, rimuoviUtente, svuotaTabella, vediAdmin, vediLogin, adminLogin, getAdminPerm
-from variabili import database, goodCoins
+from variabili import database, goodCoins, xpToAdd
 from json import loads
 
 app = Flask(__name__)
@@ -56,10 +56,11 @@ def prof():
 
      conn = create_connection(database)
      with conn:
-          user, coins, domande, risposte, vite = getProfile(conn, username)
+          user, coins, domande, risposte, vite, xp = getProfile(conn, username)
           pic = getProfilePic(conn, username)
+          lvl = xpToLvl(conn, username)
           print(pic)
-          return render_template("profilo.html", coins=coins, domande=domande, risposte=risposte, username=user, vite=vite, propic=pic)
+          return render_template("profilo.html", coins=coins, domande=domande, risposte=risposte, username=user, vite=vite, propic=pic, lvl=lvl)
 
 
 # LOGOUT
@@ -134,6 +135,7 @@ def provaIndovina(id):
           if parola == risposta.lower():
                editCoins(conn, session["logged-user"], goodCoins)
                addVittoria(conn, session["logged-user"])
+               addXP(conn, session["logged-user"], xpToAdd)
                return render_template("status.html", stat=True, id=id)
           else:
                rimuoviVita(conn, session["logged-user"])

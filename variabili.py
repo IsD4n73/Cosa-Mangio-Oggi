@@ -3,3 +3,9 @@ database = r"./data/cosamangio.db"
 
 # COINS DA AGGIUNGERE RISPOSTA GIUSTA
 goodCoins = 25
+
+# MOLTIPLICATORE XP
+moltiplicaXp = 0.07 
+
+# XP DA AGGIUNGERE AD OGNI RISPOSTA CORRETTA
+xpToAdd = 25

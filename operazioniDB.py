@@ -1,5 +1,6 @@
-import sqlite3
+from math import sqrt
 from json import dumps
+from variabili import moltiplicaXp
 
 # LOGIN UTENTE
 def login(conn, email, psw):
@@ -50,7 +51,8 @@ def getProfile(conn, user):
         domande = row["domande_pubblicate"]
         risposte = row["risposte_date"]
         vite = row["vite"]
-    return username, coins, domande, risposte, vite
+        xp = row["xp"]
+    return username, coins, domande, risposte, vite, xp
 
 
 
@@ -163,3 +165,31 @@ def getProfilePic(conn, username):
     rows = cur.fetchall()
     for row in rows:
         return row["link_pic"]
+
+# GET XP UTENTE
+def getXP(conn, user):
+    cur = conn.cursor()
+
+    sql = f"SELECT xp FROM login WHERE username = '{user}'"
+    cur.execute(sql)
+    rows = cur.fetchall()
+    for row in rows:
+        return row["xp"]
+    
+
+# XP TO LVL
+def xpToLvl(conn, user):
+    lvl = moltiplicaXp * sqrt(getXP(conn, user))
+    return int(lvl)
+
+# LVL TO XP
+def lvlToXp(conn, user):
+    return pow((xpToLvl(conn, user) / moltiplicaXp), 2)
+
+# ADD XP TO USER
+def addXP(conn, user, ammount):
+    cur = conn.cursor()
+    sql = f"UPDATE login SET xp = xp + {ammount} WHERE username = '{user}'"
+    cur.execute(sql)
+    conn.commit()
+
