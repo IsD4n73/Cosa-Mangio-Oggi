@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, session, redirect
 from connection import create_connection
 from operazioniDB import getDomande, getVite, login,  register, getProfile, getSingolaDomanda, rimuoviVita, editCoins
 from operazioniDB import getCountDomande, addVittoria, getIdUtente, getUserFromQuest, getProfilePic, addXP, xpToLvl
+from operazioniDB import getProfileEdit, profileEdit, checkUsername
 from adminDB import addAdmin, rimuoviAdmin, rimuoviUtente, svuotaTabella, vediAdmin, vediLogin, adminLogin, getAdminPerm
 from variabili import database, goodCoins, xpToAdd
 from json import loads
@@ -43,7 +44,49 @@ def main():
           lista = loads(getDomande(conn, id))
           return render_template("index.html", domande=lista, lun=lunghezza)
      
-    
+# MODIFICA PROFILO GET
+@app.route('/profilo/modifica', methods=["GET"])
+def editProf():
+     try:
+          username = session["logged-user"]
+     except:
+          return redirect("/login")
+
+     conn = create_connection(database)
+     with conn:
+          user, email, psw, pic = getProfileEdit(conn, username)
+     return render_template("editProfilo.html", user=user, email=email, psw=psw, pic=pic)
+
+
+# MODIFICA PROFILO POST
+@app.route('/profilo/modifica', methods=["POST"])
+def editProfPost():
+     try:
+          username = session["logged-user"]
+     except:
+          return redirect("/login")
+
+     try:
+          user = request.form["username"]
+          email = request.form["email"]
+          psw = request.form["password"]
+          vecchioUser = request.form["vecchioUser"]
+          if len(request.form["link-pic"]) > 5:
+               pic = request.form["link-pic"]
+          else:
+               pic = "NULL"
+     except:
+          return redirect("/profilo")
+     conn = create_connection(database)
+     with conn:
+          if checkUsername(conn, user) == False:
+               profileEdit(conn, vecchioUser, user, email, psw, pic)
+               session["logged-user"] = user
+
+          return redirect("/profilo")
+
+
+     
 
 
 # PROFILO
@@ -59,7 +102,6 @@ def prof():
           user, coins, domande, risposte, vite, xp = getProfile(conn, username)
           pic = getProfilePic(conn, username)
           lvl = xpToLvl(conn, username)
-          print(pic)
           return render_template("profilo.html", coins=coins, domande=domande, risposte=risposte, username=user, vite=vite, propic=pic, lvl=lvl)
 
 

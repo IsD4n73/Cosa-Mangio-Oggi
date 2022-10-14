@@ -1,5 +1,7 @@
 from math import sqrt
 from json import dumps
+
+from numpy import true_divide
 from variabili import moltiplicaXp
 
 # LOGIN UTENTE
@@ -37,6 +39,39 @@ def register(conn, email, psw, user):
     conn.commit()
     return "Utente registrato!"
 
+# OTTIENI VALORI MODIFICA
+def getProfileEdit(conn, user):
+    cur = conn.cursor()
+
+    sql = f"SELECT * FROM login WHERE username = '{user}'"
+    cur.execute(sql)
+    rows = cur.fetchall()
+    for row in rows:
+        username = row["username"]
+        email = row["email"]
+        psw = row["password"]
+        pic = row["link_pic"]
+    return username, email, psw, pic
+
+# MODIFICA PROFILO
+def profileEdit(conn, vecchioUser, username, email, psw, pic):
+    cur = conn.cursor()
+    sql = f"UPDATE login SET username = '{username}', email = '{email}', password = '{psw}', link_pic = '{pic}' WHERE username = '{vecchioUser}'"
+    cur.execute(sql)
+    conn.commit()
+
+
+# CONTROLLO USERNAME
+def checkUsername(conn, user):
+    cur = conn.cursor()
+
+    sql = f"SELECT * FROM login WHERE username = '{user}'"
+    cur.execute(sql)
+    rows = cur.fetchall()
+    for row in rows:
+        if row["username"] == user:
+            return True
+    return False
 
 # PROFILO UTENTE
 def getProfile(conn, user):

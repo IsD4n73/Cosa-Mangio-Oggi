@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <title>Profilo</title>
   <meta name="viewport"
-      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <link rel="stylesheet" href="{{url_for('static', filename='css/profilo.css')}}">
 <link rel="icon" href="{{url_for('static', filename='asset/Logo.png')}}">
 </head>
@@ -15,7 +16,7 @@
 <div class="wrapper">
   <div class="profile-card js-profile-card">
     <div class="profile-card__img">
-      {% if propic == None %}
+      {% if propic == "NULL" %}
         <img src="{{url_for('static', filename='asset/user-avatar.png')}}" alt="profile card">
       {% else %}
         <img src="{{propic}}" alt="profile card">
@@ -58,7 +59,7 @@
 
       </div>
       <div class="profile-card-ctr">
-        <!-- <button class="profile-card__button button--blue js-message-btn">Modifica Profilo</button> -->
+        <button class="profile-card__button button--blue js-message-btn"><a href="/profilo/modifica">Modifica Profilo</a></button>
         <button class="profile-card__button button--orange"><a href="/logout">Logout</a></button>
       </div>
     </div>

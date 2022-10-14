@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Modifica Profilo</title>
+  <meta name="viewport"
+  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <link rel="icon" href="{{url_for('static', filename='asset/Logo.png')}}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<link rel="stylesheet" href="{{url_for('static', filename='css/editProfilo.css')}}">
+
+</head>
+<body>
+
+<div class="container">
+
+	<h1 class="title">Modifica Profilo</h1>
+
+	<div class="grid">
+		<form action="/profilo/modifica" method="post">
+
+		
+		<div class="form-group a">
+			<label for="name">Username</label>
+			<input id="name" type="text" name="username" required value="{{user}}">
+		</div>
+
+		<div class="form-group b">
+			<label for="first-name">Email</label>
+			<input id="first-name" type="email" name="email" required value="{{email}}">
+		</div>
+
+		<div class="form-group phone-group">
+			<label for="phone">Immagine Profilo</label>
+			{% if pic == "NULL" %}
+				<input id="phone" type="text" name="link-pic">
+			{% else %}
+				<input id="phone" type="text" name="link-pic" value="{{pic}}">
+			{% endif %}
+		</div>
+
+		<div class="form-group">
+			<label for="psw">Password Vecchia <span class="hidden" id="err" style="color: red;">(Password Errata)</span></label>
+			<input onkeyup="controllaPassword('{{psw}}')" id="psw" type="password" required>
+		</div>
+
+		<div class="form-group">
+			<label for="address">Password Nuova</label>
+			<input id="address" type="password" required name="password">
+		</div>
+
+		<div class="form-group">
+			<label for="zip"></label>
+			<input id="zip" type="hidden" value="{{user}}" name="vecchioUser">
+		</div>
+	</div>
+
+	<!-- <div class="checkboxes">
+
+		<div class="checkbox-group">
+			<input id="newsletter" type="checkbox">
+			<label for="newsletter">Condizione 1</label>
+		</div>
+
+		<div class="checkbox-group">
+			<input id="newsletter-partners" type="checkbox">
+			<label for="newsletter-partners">Condizione 2</label>
+		</div>
+
+	</div> -->
+
+	<div class="button-container">
+		<button class="button" id="btn" type="submit">Esegui Modifiche</button>
+	</div>
+	</form>
+</div>
+
+<style>
+	.hidden{
+		display: none;
+	}
+	.error{
+		border-color: red;
+	}
+</style>
+
+
+<script>
+function controllaPassword(xyryuwu){
+	var psw = document.getElementById("psw");
+	var btn = document.getElementById("btn");
+	var err = document.getElementById("err");
+
+	if (psw.value != xyryuwu){
+		btn.classList.add("hidden");
+		psw.classList.add("error");
+		err.classList.remove("hidden");
+	}else{
+		btn.classList.remove("hidden");
+		psw.classList.remove("error");
+		err.classList.add("hidden");
+	}
+}
+
+</script>
+
+{% include 'loading.html' %}
+</body>
+</html>

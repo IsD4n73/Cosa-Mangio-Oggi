@@ -1,22 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" >
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cosa Mangio?</title>
-    <link rel="icon" href="{{url_for('static', filename='asset/Logo.png')}}">
+  <meta charset="UTF-8">
+  <title>Cosa Mangio Oggi?</title>
+  <link rel="icon" href="{{url_for('static', filename='asset/Logo.png')}}">
+  <meta name="viewport"content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 </head>
 
-<body>
+
+<body style="background-color: #98a8a3;">
+ 
     {% include 'navbar.html' %}
+    
 
+  {% include 'loading.html' %}
 
-    <a href='/admin'> Admin </a> <br>
-    <a href='/login'> Login </a> <br>
-    <a href='/registrati'> Registrati </a> <br>
-    <a href='/profilo'> Profilo </a> <br>
 </body>
-
 </html>
