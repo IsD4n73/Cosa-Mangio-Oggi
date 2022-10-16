@@ -20,6 +20,7 @@ Python, Flask, html, css, javascript, Sql Lite
 - /admin
 - /admin/dashboard
 - /login
+- /logout
 - /registrati
 - /profilo
 - /profilo/pubblica
