@@ -14,7 +14,7 @@ Python, Flask, html, css, javascript, Sql Lite
 # Uso
 
 ## Sito Web
-> ///
+> https://cosamangio.pythonanywhere.com/
 
 ## Endpoints
 - /admin
@@ -45,7 +45,6 @@ Per resettare le vite e le pubblicazioni dei giocatori:
 
 ## To-Do
 - bacheca principale
-- modifica profilo
 - pubblicazioni 
 - livelli
 
