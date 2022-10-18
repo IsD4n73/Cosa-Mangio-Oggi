@@ -1,0 +1,175 @@
+@charset "UTF-8";
+/*PEN STYLES*/
+body {
+  background: #f1f1f1;
+  margin-top: 2rem;
+}
+
+.contactForm {
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin: auto;
+  max-width: 450px;
+  overflow: hidden;
+  /*SUCESS STYLES*/
+}
+.contactForm .formHeader {
+  background: #d81e5b ;
+  border-bottom: 4px solid #d81e5b ;
+  color: #fff;
+  text-align: center;
+  overflow: hidden;
+  /*TRANSITION*/
+  transition: all 0.5s ease;
+}
+.contactForm .formHeader h1 {
+  line-height: 1em;
+}
+.contactForm .formBody {
+  background: #fff;
+  padding: 20px 12px;
+  overflow: hidden;
+  /*TRANSITION*/
+  transition: all 0.2s ease;
+}
+.contactForm .inputContainer {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  position: relative;
+  margin-bottom: 5px;
+  overflow: hidden;
+  background: transparent;
+}
+.contactForm .inputContainer .message {
+  color: #FF5C5C;
+  background: #FF5C5C;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  margin: 0;
+  line-height: 2.5em;
+  text-align: center;
+  overflow: hidden;
+  /*TRANSITION*/
+  transition: all 0.1s ease;
+}
+.contactForm .inputContainer label,
+.contactForm .inputContainer input,
+.contactForm .inputContainer textarea {
+  box-sizing: border-box;
+  padding: 10px;
+  font-size: 14px;
+  line-height: 1em;
+  border: none;
+  font: inherit;
+}
+.contactForm .inputContainer label {
+  display: inline-block;
+  font-size: 0.7em;
+  background: #ccc;
+  color: rgba(0, 0, 0, 0.3);
+  line-height: 1.75em;
+  border-right: 1px solid #ccc;
+  /*POSITION*/
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+}
+.contactForm .inputContainer textarea,
+.contactForm .inputContainer input {
+  width: 100%;
+  max-width: 100%;
+}
+.contactForm .inputContainer textarea {
+  margin-bottom: -5px;
+}
+.contactForm .inputContainer input {
+  padding-left: 50px;
+}
+.contactForm .submitBtn {
+  background: #d81e5b ;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  font: inherit;
+  padding: 10px 18px;
+  margin-top: 10px;
+  float: right;
+  width: auto;
+  /*TRANSITION*/
+  transition: background 0.5s ease;
+}
+.contactForm .submitBtn:hover {
+  background: #d84274 ;
+}
+.contactForm.success {
+  overflow: hidden;
+}
+.contactForm.success .formHeader {
+  background: #0A8754;
+  border-color: #0A8754;
+  font-size: 0.75em;
+}
+.contactForm.success .formBody {
+  height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.contactForm.success .formBody form {
+  /*TRANSITION*/
+  transition: opacity 0.5s ease;
+  opacity: 0;
+}
+.contactForm .inputContainer.success {
+  border-color: #82E682;
+}
+.contactForm .inputContainer.success:after {
+  font: 1.25em/2em FontAwesome;
+  color: #82E682;
+  position: absolute;
+  top: 0;
+  right: 10px;
+  content: "";
+}
+.contactForm .inputContainer.success label {
+  background: #82E682;
+  border-color: #82E682;
+}
+.contactForm .inputContainer.success input,
+.contactForm .inputContainer.success textarea {
+  color: #0A8754;
+}
+.contactForm .inputContainer.error {
+  border-color: #FF5C5C;
+}
+.contactForm .inputContainer.error .message {
+  width: 100%;
+}
+.contactForm .inputContainer.error:after {
+  font: 1.25em/2em FontAwesome;
+  color: #FF5C5C;
+  position: absolute;
+  top: 0;
+  right: 10px;
+  content: "";
+}
+.contactForm .inputContainer.error label {
+  background: #FF5C5C;
+  border-color: #FF5C5C;
+}
+.contactForm .inputContainer.error input,
+.contactForm .inputContainer.error textarea {
+  color: #FF5C5C;
+}
+
+#msgErr{
+  color: red;
+  text-align: center;
+  
+}
+
+.hidden{
+  display: none;
+}

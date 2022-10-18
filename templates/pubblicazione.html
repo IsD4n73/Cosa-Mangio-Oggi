@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Pubblicazione</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css'>
+
+  <link rel="stylesheet" href="{{url_for('static', filename='css/pubblicazione.css')}}">
+<link rel="icon" href="{{url_for('static', filename='asset/Logo.png')}}">
+
+</head>
+<body>
+
+<div id="contactForm" class="contactForm">
+	
+	<div id="formHeader" class="formHeader">
+		<h1 id="message">Aggiungi Domanda</h1>
+	</div>
+
+	<div id="formBody" class="formBody">
+		<form action="/profilo/pubblica" method="POST" name="contactForm">
+			<div class="inputContainer">
+				<label for="userName">
+					<i class="fa fa-lg fa-fw fa-cutlery"></i>
+				</label>
+				<input name="cibo" id="userName" type="text" placeholder="Cibo da indovinare" required onkeyup="allLetter()">
+			</div>
+			
+			<div class="inputContainer">
+				<textarea name="msg" id="userMessage" rows="10" placeholder="Inserisci un messaggio"></textarea>
+			</div>
+			<input id="submitBtn" class="submitBtn" type="submit" value="Pubblica">
+		</form>
+	</div>
+</div>
+<p class="hidden" id="msgErr">Il cibo non può contentenere numeri...</p>
+
+
+<script>
+	var submit = document.getElementById("submitBtn");
+	var inputtxt = document.getElementById("userName");
+	var err = document.getElementById("msgErr");	
+	var letters = /^[A-Za-z]+$/;
+	
+	function allLetter(){
+		if(inputtxt.value.match(letters)){
+			submit.classList.remove("hidden")
+			err.classList.add("hidden")
+		}
+		else{
+			submit.classList.add("hidden")
+			err.classList.remove("hidden")
+		}
+	}
+</script>
+
+</body>
+</html>

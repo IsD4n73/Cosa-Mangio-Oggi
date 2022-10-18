@@ -153,6 +153,24 @@ def getDomande(conn, idUtente):
     
     return dumps(data)
 
+#AGGIUNGI PUBBLICAZIONE
+def addPubblish(conn, user):
+    cur = conn.cursor()
+
+    sql = f"UPDATE login SET domande_pubblicate = domande_pubblicate + 1 WHERE id_utente = {user}"
+    cur.execute(sql)
+    conn.commit()
+
+
+# PUBBLICA DOMANDA
+def publishDomanda(conn, utente, risposta, messaggio):
+    cur = conn.cursor()
+
+    sql = f"INSERT INTO domande (utente, risposta, messaggio) VALUES ('{utente}', '{risposta}','{messaggio}')"
+    cur.execute(sql)
+    conn.commit()
+    addPubblish(conn, utente)
+
 # OTTIENI COUNT DOMANDE
 def getCountDomande(conn, idUtente):
     cur = conn.cursor()
@@ -227,4 +245,7 @@ def addXP(conn, user, ammount):
     sql = f"UPDATE login SET xp = xp + {ammount} WHERE username = '{user}'"
     cur.execute(sql)
     conn.commit()
+
+
+# GET PUBBLICAZIONI
 

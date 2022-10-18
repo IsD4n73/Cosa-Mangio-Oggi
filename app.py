@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, session, redirect
 from connection import create_connection
 from operazioniDB import getDomande, getVite, login,  register, getProfile, getSingolaDomanda, rimuoviVita, editCoins
 from operazioniDB import getCountDomande, addVittoria, getIdUtente, getUserFromQuest, getProfilePic, addXP, xpToLvl
-from operazioniDB import getProfileEdit, profileEdit, checkUsername
+from operazioniDB import getProfileEdit, profileEdit, checkUsername, publishDomanda
 from adminDB import addAdmin, rimuoviAdmin, rimuoviUtente, svuotaTabella, vediAdmin, vediLogin, adminLogin, getAdminPerm
 from variabili import database, goodCoins, xpToAdd
 from json import loads
@@ -86,8 +86,34 @@ def editProfPost():
           return redirect("/profilo")
 
 
-     
+# PUBBLICAZIONE DOMANDA GET
+@app.route('/profilo/pubblica', methods=["GET"])
+def pubblish():    
+     try:
+          username = session["logged-user"]
+     except:
+          return redirect("/login")
 
+     return render_template("pubblicazione.html")
+
+# PUBBLICAZIONE DOMANDA POST
+@app.route('/profilo/pubblica', methods=["POST"])
+def pubblishPost():    
+     try:
+          username = session["logged-user"]
+     except:
+          return redirect("/login")
+     conn = create_connection(database)
+     with conn:
+          try:
+               risposta = request.form["cibo"]
+               messaggio = request.form["msg"]
+               idUser = getIdUtente(conn, username)
+          except:
+               return redirect("/profilo")
+          publishDomanda(conn, idUser, risposta, messaggio)
+          return redirect("/profilo")
+          
 
 # PROFILO
 @app.route('/profilo')
