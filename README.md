@@ -20,6 +20,7 @@ Python, Flask, html, css, javascript, Sql Lite
 ## Endpoints
 - /admin
 - /admin/dashboard
+- /admin/logout
 - /login
 - /logout
 - /registrati
