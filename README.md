@@ -46,7 +46,6 @@ Per resettare le vite e le pubblicazioni dei giocatori:
 ## To-Do
 - bacheca principale
 - pubblicazioni 
-- livelli
 
 ## Features
 - Login utente
