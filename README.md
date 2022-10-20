@@ -3,6 +3,7 @@
 Web app in cui gli utenti indovinano cosa hanno mangiato gli altri utenti, è necessario registrarsi per poter giocare. 
 
 Ogni utente ha a disposizione X vite per indovinare, quando indovina verranno aggiunti Y punti al suo account con i quali si possono acquistare lettere ed aiuti 
+Per giocare è necessario registrarsi. 
 
 ### Develop
 Python, Flask, html, css, javascript, Sql Lite
