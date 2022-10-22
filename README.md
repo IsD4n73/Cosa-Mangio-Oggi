@@ -46,7 +46,7 @@ Per resettare le vite e le pubblicazioni dei giocatori:
 > py resetVite.py
 
 ## To-Do
-- bacheca principale
+- home page
 - pubblicazioni con spazi
 - shop
 
