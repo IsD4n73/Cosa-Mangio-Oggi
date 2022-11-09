@@ -1,19 +1,156 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Cosa Mangio Oggi?</title>
-  <link rel="icon" href="{{url_for('static', filename='asset/Logo.png')}}">
-  <meta name="viewport"content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="author" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<title>Cosa Mangio Oggi?</title>
+<link rel="icon" href="{{url_for('static', filename='asset/Logo.png')}}">
+
+<link rel="stylesheet" href="{{url_for('static', filename='css/home/bootstrap.min.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/home/animate.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/home/font-awesome.min.css')}}">
+
+<link rel="stylesheet" href="{{url_for('static',filename='css/home/magnific-popup.css')}}">
+
+<link rel="stylesheet" href="{{url_for('static',filename='css/home/owl.theme.css')}}">
+<link rel="stylesheet" href="{{url_for('static',filename='css/home/owl.carousel.css')}}">
+
+<link href='https://fonts.googleapis.com/css?family=Unica+One' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700' rel='stylesheet' type='text/css'>
+
+<!-- Main css -->
+<link rel="stylesheet" href="{{url_for('static',filename='css/home/style.css')}}">
+
 </head>
+<body data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 
 
-<body style="background-color: #98a8a3;">
- 
-    {% include 'navbar.html' %}
-    
+<!-- PRE LOADER -->
 
-  {% include 'loading.html' %}
+<div class="preloader">
+     <div class="sk-spinner sk-spinner-pulse"></div>
+</div>
+
+
+
+
+
+<!-- Home Section -->
+
+<section id="home" class="main">
+     <div class="overlay"></div>
+	<div class="container">
+		<div class="row">
+
+               <div class="wow fadeInUp col-md-6 col-sm-5 col-xs-10 col-xs-offset-1 col-sm-offset-0" data-wow-delay="0.2s">
+                    <img src="{{url_for('static', filename='asset/Logo.png')}}" class="img-responsive" alt="Home">
+               </div>
+
+               <div class="col-md-6 col-sm-7 col-xs-12">
+                    <div class="home-thumb">
+                         <h1 class="wow fadeInUp" data-wow-delay="0.6s">Cosa Mangio Oggi</h1>
+                         <p class="wow fadeInUp" data-wow-delay="0.8s">Un nuovo gioco basato sull'indovinare diversi cibi come colazione, pranzo e cena.</p>
+                         <a href="/registrati" class="wow fadeInUp section-btn btn btn-success smoothScroll" data-wow-delay="1s">Inizia a Giocare</a>
+                    </div>
+               </div>
+
+		</div>
+	</div>
+</section>
+
+
+
+
+
+<!-- Divider Section -->
+
+<section id="divider">
+     <div class="container">
+          <div class="row">
+
+               <div class="col-md-offset-2 col-md-8 col-sm-12">
+                    <h2 class="wow fadeInUp" data-wow-delay="0.4s">Effettua dei giochi che si basano sull'indovinare dei cibi che ogni utente può pubblicare 3 volte al giorno su una bacheca dove tutti gli altri utenti possono indovinare guadagliando dei coins.</h2>
+                    <a href="/login" class="wow fadeInUp section-btn btn btn-success smoothScroll" data-wow-delay="0.8s">Login</a>
+               </div>
+
+          </div>
+     </div>
+</section>
+
+
+
+<!-- Pricing Section -->
+
+<section id="pricing">
+     <div class="container">
+          <div class="row">
+
+                <div class="col-md-12 col-sm-12">
+                    <div class="section-title">
+                         <h1>Funzionalità</h1>
+                         <hr>
+                    </div>
+               </div>
+
+               <div class="wow fadeInUp col-md-6 col-sm-6" data-wow-delay="0.4s">
+                    <div class="pricing-plan">
+                         <div class="pricing-month">
+                              <h2>ADMIN ZONE</h2>
+                         </div>
+                         <div class="pricing-title">
+                              <h3>dashboard</h3>
+                         </div>
+                         <p>Gestisci i permessi</p>
+                         <p>Controlla gli utenti</p>
+                         <p>Controlla la bacheca</p>
+                         <button class="btn btn-default section-btn" onclick="window.open('admin', '_self')">Admin Zone</button>
+                    </div>
+               </div>
+
+               <div class="wow fadeInUp col-md-6 col-sm-6" data-wow-delay="0.6s">
+                    <div class="pricing-plan">
+                         <div class="pricing-month">
+                              <h2>PROFILO</h2>
+                         </div>
+                         <div class="pricing-title">
+                              <h3>Profilo personale</h3>
+                         </div>
+                         <p>Modifica le informazioni</p>
+                         <p>Controlla le statistiche</p>
+                         <p>Pubblica nuove domande</p>
+                         <button class="btn btn-default section-btn" onclick="window.open('profilo', '_self')">Profilo</button>
+                    </div>
+               </div>
+
+               
+
+          </div>
+     </div>
+</section>
+
+
+
+
+
+
+
+<!-- SCRIPTS -->
+
+<script src="{{url_for('static',filename='js/home/jquery.js')}}"></script>
+<script src="{{url_for('static',filename='js/home/bootstrap.min.js')}}"></script>
+<script src="{{url_for('static',filename='js/home/jquery.magnific-popup.min.js')}}"></script>
+<script src="{{url_for('static',filename='js/home/magnific-popup-options.js')}}"></script>
+<script src="{{url_for('static',filename='js/home/owl.carousel.min.js')}}"></script>
+<script src="{{url_for('static',filename='js/home/smoothscroll.js')}}"></script>
+<script src="{{url_for('static',filename='js/home/wow.min.js')}}"></script>
+<script src="{{url_for('static',filename='js/home/custom.js')}}"></script>
+
 
 </body>
 </html>
